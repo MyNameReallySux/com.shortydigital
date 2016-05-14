@@ -1,16 +1,41 @@
-// Node Modules
-var util            = require('util');          //Utilities for Debugging
+/* ##########################
 
+########################## */
+// Node Modules | https://nodejs.org/api
+var util            = require('util');          // Utilites for inspecting  | https://nodejs.org/api/util.html
+var path            = require('path');          // Set and read file paths  | https://nodejs.org/api/path.html
 // Installed Modules
-var _               = require("underscore");    //The JQuery of Node.js
-var express         = require("express");
+var _               = require("underscore");    // The JQuery of node.js    |
+var express         = require("express");       // Simple router            |
 
 // Main Domain <www.shortydigital.com>
-console.log("Starting com.shortydigital");
+var name = "com.shortydigital";
+console.log("Starting " + name);
 
 var express = require('express');
-var exp = express();
+var app = express();
 
+process.env.port = 80;
+
+// Set application port
+app.listen(process.env.port)
+console.log("Listening on port " + process.env.port);
+
+/*
+// Development specific variables
+app.configure('development', function(){
+  app.use(express.errorHandler());
+});
+
+// Production specific variables
+app.configure('production', function(){
+
+});
+*/
+
+/* ##########################
+    Local Functions
+########################## */
 function isSet(variable){
         return (typeof variable != undefined)
             && variable !== null 

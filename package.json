@@ -1,0 +1,40 @@
+{
+  "name": "com.shortydigital",
+  "version": "0.1.0",
+  "description": "Chris Coppola's portfolio website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MyNameReallySux/com.shortydigital.git"
+  },
+  "keywords": [
+    "website",
+    "portfolio",
+    "shorty",
+    "digital",
+    "shortydigital",
+    "blog",
+    "node.js",
+    "express",
+    "css",
+    "html"
+  ],
+  "author": "Chris Coppola <chris.coppola315@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MyNameReallySux/com.shortydigital/issues"
+  },
+  "homepage": "https://github.com/MyNameReallySux/com.shortydigital#readme",
+  "dependencies": {
+    "compression": "^1.6.2",
+    "express": "^4.13.4",
+    "underscore": "^1.8.3"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "sass": "^0.5.0"
+  }
+}
