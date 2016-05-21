@@ -1,0 +1,74 @@
+h1, h2, h3, h4, h5, h6 {
+  margin: 5px 0;
+  padding: 0 0 5px 0; 
+}
+
+h1 + div,
+h2 + div,
+h3 + div,
+h4 + div,
+h5 + div,
+h6 + div {
+  margin-top: 5px;
+}
+
+body {
+    -webkit-box-sizing:border-box; 
+    -moz-box-sizing:border-box; 
+    box-sizing:border-box;
+}
+
+%clearfix:after {
+    display :   block;
+    clear   :   both;
+    content :   '';
+}
+
+$grid-spacing: 3%;
+$columns: 4;
+
+.row {
+    @extend %clearfix;
+    
+    & + & {
+        margin-top: $grid-spacing;
+    }
+}
+
+.col {
+    float: left;
+    margin-right: $grid-spacing;
+    
+    &:last-child {
+        margin-right:0%;
+    }
+}
+
+$sizes: "xs" '',
+        "ms" '480',
+        "sm" '640',
+        "md" '768',
+        "lg" '960',
+        "xl" '1200';
+@for $i from 1 through length($sizes) {
+    $pair: nth($sizes, $i);
+    $size: nth($pair, 1);
+    $media: nth($pair, 2);
+    
+    @debug $size $media;
+    $col-widths: ();
+
+    @media only screen and ('min-width: #{$media}px'){  
+        @for $j from 1 through $columns {
+            $width: ($j / $columns);
+            @debug "#{$width} : j is #{$j}";
+            @if not index($col-widths, $width) {
+                .col .#{$size}#{$j} {
+                    width: $width * 100%;
+                }
+
+                $col-widths: append($col-widths, $width, comma);
+            }   
+        }
+    }
+}

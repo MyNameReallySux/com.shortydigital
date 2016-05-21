@@ -29,6 +29,7 @@
     "url": "https://github.com/MyNameReallySux/com.shortydigital/issues"
   },
   "homepage": "https://github.com/MyNameReallySux/com.shortydigital#readme",
+  "private": true,
   "dependencies": {
     "body-parser": "^1.15.1",
     "compression": "^1.6.2",
@@ -42,6 +43,9 @@
   },
   "devDependencies": {
     "grunt": "^1.0.1",
+    "grunt-contrib-handlebars": "^1.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-sass": "^1.2.0",
     "sass": "^0.5.0"
   }
 }

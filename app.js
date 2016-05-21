@@ -16,12 +16,12 @@ var cookieParser    = require('cookie-parser');         // Parse cookies        
 var bodyParser      = require('body-parser');           // Parse html               |
 var favicon         = require('serve-favicon');         // Serves favicon           |
 
-var app = express();
+var helpers = require('./scripts/helpers');
+var utils = require('./scripts/utils');
+var Drivers = require('./scripts/driver');
+var Provider = Drivers.Provider;
 
-// prototype functions
-String.prototype.capitalize = function() {
-    return this.charAt(0).toUpperCase() + this.slice(1);
-}
+var app = express();
 
 // main domain <www.shortydigital.com>
 var package = "com.shortydigital";
@@ -29,6 +29,7 @@ var domain = "shortydigital.com";
 var name = "Shorty Digital"
 
 console.log("Starting " + package);
+
 // set application config
 app.set('port', process.env.port || 4000);
 app.use(compression());
@@ -39,6 +40,9 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cookieParser());
 app.use(logger('dev'));
+
+// register handlebars helpers;
+helpers.configHandlebars(handlebars);
 
 // set view engine
 app.set('views', path.join(__dirname, 'views'));
@@ -105,24 +109,12 @@ app.use(function(err, req, res, next) {
 app.listen(app.get('port'));
 console.log("Listening on port " + app.get('port'));
 
-
 module.exports = app;
 
 /* ##########################
     Local Functions
 ########################## */
-function isSet(variable){
-    return (typeof variable != undefined)
-        && variable !== null 
-        && variable != ''
-        && variable != undefined;
-}
 
-function configHandlebars(){
-    handlebars.registerHelper('container', function(options){
-        
-    })
-}
 // Removed Code
 {
 /*
