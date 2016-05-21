@@ -1,14 +1,13 @@
 {{!< layout/master.handlebars}}
 {{!-- blog.handlebars in views--}}
 
-<h1>{{title}}</h1>
 <div>
     {{#each posts}}
     <h2>{{title}}</h2>
     <h5>Posted By: {{author}}</h5>
     <div>
         <p>
-            {{body}}
+            {{snippet}}
         </p>
     </div>
     {{/each}}

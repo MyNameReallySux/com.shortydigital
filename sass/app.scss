@@ -25,7 +25,12 @@ body {
 }
 
 $grid-spacing: 3%;
-$columns: 4;
+$columns: 12;
+
+.container {
+    width: 100%;
+    max-width: 960px;
+}
 
 .row {
     @extend %clearfix;
@@ -55,13 +60,17 @@ $sizes: "xs" '',
     $size: nth($pair, 1);
     $media: nth($pair, 2);
     
-    @debug $size $media;
+    
+    // @debug $size $media;
+    
+    
     $col-widths: ();
-
-    @media only screen and ('min-width: #{$media}px'){  
+    if($media -eq ''){
         @for $j from 1 through $columns {
             $width: ($j / $columns);
-            @debug "#{$width} : j is #{$j}";
+            
+            // @debug "#{$width} : j is #{$j}";
+            
             @if not index($col-widths, $width) {
                 .col .#{$size}#{$j} {
                     width: $width * 100%;
@@ -70,5 +79,21 @@ $sizes: "xs" '',
                 $col-widths: append($col-widths, $width, comma);
             }   
         }
+    } else {
+        @media only screen and ('min-width: #{$media}px'){  
+            @for $j from 1 through $columns {
+                $width: ($j / $columns);
+                
+                // @debug "#{$width} : j is #{$j}";
+                
+                @if not index($col-widths, $width) {
+                    .col .#{$size}#{$j} {
+                        width: $width * 100%;
+                    }
+                    $col-widths: append($col-widths, $width, comma);
+                }   
+            }
+        }   
     }
+   
 }

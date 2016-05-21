@@ -21,7 +21,7 @@ Provider = function(type){
         }
         this[findByIdfcn] = function(id, callback){
             this.findById(type, id, callback);
-        }
+    	}
     } else {
         type = 'NoModel';
     }

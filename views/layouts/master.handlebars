@@ -5,7 +5,9 @@
     </head>
     <body>
         {{> header}}
-        {{{body}}}
+        {{#container}}
+            {{{body}}}
+        {{/container}}
         {{> footer}}
         {{> scripts}}
     </body>

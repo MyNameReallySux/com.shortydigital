@@ -20,6 +20,10 @@ body {
   clear: both;
   content: ''; }
 
+.container {
+  width: 100%;
+  max-width: 960px; }
+
 .row + .row {
   margin-top: 3%; }
 
@@ -29,62 +33,218 @@ body {
   .col:last-child {
     margin-right: 0%; }
 
-@media only screen and (min-width: px) {
-  .col .xs1 {
-    width: 25%; }
-  .col .xs2 {
-    width: 50%; }
-  .col .xs3 {
-    width: 75%; }
-  .col .xs4 {
-    width: 100%; } }
+if($media -eq '') .col .xs1 {
+  width: 8.3333333333%; }
 
-@media only screen and (min-width: 480px) {
-  .col .ms1 {
-    width: 25%; }
-  .col .ms2 {
-    width: 50%; }
-  .col .ms3 {
-    width: 75%; }
-  .col .ms4 {
-    width: 100%; } }
+if($media -eq '') .col .xs2 {
+  width: 16.6666666667%; }
 
-@media only screen and (min-width: 640px) {
-  .col .sm1 {
-    width: 25%; }
-  .col .sm2 {
-    width: 50%; }
-  .col .sm3 {
-    width: 75%; }
-  .col .sm4 {
-    width: 100%; } }
+if($media -eq '') .col .xs3 {
+  width: 25%; }
 
-@media only screen and (min-width: 768px) {
-  .col .md1 {
-    width: 25%; }
-  .col .md2 {
-    width: 50%; }
-  .col .md3 {
-    width: 75%; }
-  .col .md4 {
-    width: 100%; } }
+if($media -eq '') .col .xs4 {
+  width: 33.3333333333%; }
 
-@media only screen and (min-width: 960px) {
-  .col .lg1 {
-    width: 25%; }
-  .col .lg2 {
-    width: 50%; }
-  .col .lg3 {
-    width: 75%; }
-  .col .lg4 {
-    width: 100%; } }
+if($media -eq '') .col .xs5 {
+  width: 41.6666666667%; }
 
-@media only screen and (min-width: 1200px) {
-  .col .xl1 {
-    width: 25%; }
-  .col .xl2 {
-    width: 50%; }
-  .col .xl3 {
-    width: 75%; }
-  .col .xl4 {
-    width: 100%; } }
+if($media -eq '') .col .xs6 {
+  width: 50%; }
+
+if($media -eq '') .col .xs7 {
+  width: 58.3333333333%; }
+
+if($media -eq '') .col .xs8 {
+  width: 66.6666666667%; }
+
+if($media -eq '') .col .xs9 {
+  width: 75%; }
+
+if($media -eq '') .col .xs10 {
+  width: 83.3333333333%; }
+
+if($media -eq '') .col .xs11 {
+  width: 91.6666666667%; }
+
+if($media -eq '') .col .xs12 {
+  width: 100%; }
+
+if($media -eq '') .col .ms1 {
+  width: 8.3333333333%; }
+
+if($media -eq '') .col .ms2 {
+  width: 16.6666666667%; }
+
+if($media -eq '') .col .ms3 {
+  width: 25%; }
+
+if($media -eq '') .col .ms4 {
+  width: 33.3333333333%; }
+
+if($media -eq '') .col .ms5 {
+  width: 41.6666666667%; }
+
+if($media -eq '') .col .ms6 {
+  width: 50%; }
+
+if($media -eq '') .col .ms7 {
+  width: 58.3333333333%; }
+
+if($media -eq '') .col .ms8 {
+  width: 66.6666666667%; }
+
+if($media -eq '') .col .ms9 {
+  width: 75%; }
+
+if($media -eq '') .col .ms10 {
+  width: 83.3333333333%; }
+
+if($media -eq '') .col .ms11 {
+  width: 91.6666666667%; }
+
+if($media -eq '') .col .ms12 {
+  width: 100%; }
+
+if($media -eq '') .col .sm1 {
+  width: 8.3333333333%; }
+
+if($media -eq '') .col .sm2 {
+  width: 16.6666666667%; }
+
+if($media -eq '') .col .sm3 {
+  width: 25%; }
+
+if($media -eq '') .col .sm4 {
+  width: 33.3333333333%; }
+
+if($media -eq '') .col .sm5 {
+  width: 41.6666666667%; }
+
+if($media -eq '') .col .sm6 {
+  width: 50%; }
+
+if($media -eq '') .col .sm7 {
+  width: 58.3333333333%; }
+
+if($media -eq '') .col .sm8 {
+  width: 66.6666666667%; }
+
+if($media -eq '') .col .sm9 {
+  width: 75%; }
+
+if($media -eq '') .col .sm10 {
+  width: 83.3333333333%; }
+
+if($media -eq '') .col .sm11 {
+  width: 91.6666666667%; }
+
+if($media -eq '') .col .sm12 {
+  width: 100%; }
+
+if($media -eq '') .col .md1 {
+  width: 8.3333333333%; }
+
+if($media -eq '') .col .md2 {
+  width: 16.6666666667%; }
+
+if($media -eq '') .col .md3 {
+  width: 25%; }
+
+if($media -eq '') .col .md4 {
+  width: 33.3333333333%; }
+
+if($media -eq '') .col .md5 {
+  width: 41.6666666667%; }
+
+if($media -eq '') .col .md6 {
+  width: 50%; }
+
+if($media -eq '') .col .md7 {
+  width: 58.3333333333%; }
+
+if($media -eq '') .col .md8 {
+  width: 66.6666666667%; }
+
+if($media -eq '') .col .md9 {
+  width: 75%; }
+
+if($media -eq '') .col .md10 {
+  width: 83.3333333333%; }
+
+if($media -eq '') .col .md11 {
+  width: 91.6666666667%; }
+
+if($media -eq '') .col .md12 {
+  width: 100%; }
+
+if($media -eq '') .col .lg1 {
+  width: 8.3333333333%; }
+
+if($media -eq '') .col .lg2 {
+  width: 16.6666666667%; }
+
+if($media -eq '') .col .lg3 {
+  width: 25%; }
+
+if($media -eq '') .col .lg4 {
+  width: 33.3333333333%; }
+
+if($media -eq '') .col .lg5 {
+  width: 41.6666666667%; }
+
+if($media -eq '') .col .lg6 {
+  width: 50%; }
+
+if($media -eq '') .col .lg7 {
+  width: 58.3333333333%; }
+
+if($media -eq '') .col .lg8 {
+  width: 66.6666666667%; }
+
+if($media -eq '') .col .lg9 {
+  width: 75%; }
+
+if($media -eq '') .col .lg10 {
+  width: 83.3333333333%; }
+
+if($media -eq '') .col .lg11 {
+  width: 91.6666666667%; }
+
+if($media -eq '') .col .lg12 {
+  width: 100%; }
+
+if($media -eq '') .col .xl1 {
+  width: 8.3333333333%; }
+
+if($media -eq '') .col .xl2 {
+  width: 16.6666666667%; }
+
+if($media -eq '') .col .xl3 {
+  width: 25%; }
+
+if($media -eq '') .col .xl4 {
+  width: 33.3333333333%; }
+
+if($media -eq '') .col .xl5 {
+  width: 41.6666666667%; }
+
+if($media -eq '') .col .xl6 {
+  width: 50%; }
+
+if($media -eq '') .col .xl7 {
+  width: 58.3333333333%; }
+
+if($media -eq '') .col .xl8 {
+  width: 66.6666666667%; }
+
+if($media -eq '') .col .xl9 {
+  width: 75%; }
+
+if($media -eq '') .col .xl10 {
+  width: 83.3333333333%; }
+
+if($media -eq '') .col .xl11 {
+  width: 91.6666666667%; }
+
+if($media -eq '') .col .xl12 {
+  width: 100%; }
