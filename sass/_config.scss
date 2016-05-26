@@ -1,0 +1,100 @@
+$DEBUG: "false";
+
+
+$breakpoints: (
+    'xs': '',       // Small Mobile Phone in Portrait                                                   {480px and less}
+    'ms': 560px,    // Medium Mobile Phone in Portrait                                                  {481px to 560px}
+    'sm': 640px,    // Small/Medium Mobile Phone in Landscape,  Large Mobile Phone in Portrait          {561px to 640px}
+    'md': 768px,    // Large Mobile Phone in Landscape,         Small Tablet in Portrait                {641px to 768px}    eg. Nexus 6p, iPad Mini
+    'lg': 960px,    // Small Tablet in Landscape,               Large Tablet in Portrait                {769px to 960px}    eg. iPad Mini, iPad
+    'xl': 1200px,   // Large Tablet in Landscape,               Desktop Computers                       {961px and more}    eg. iPad, Mac, PC
+);
+
+$max-breakpoints: (
+    'xs': '',                   // Small Mobile Phone in Portrait                                                   {480px and less}
+    'ms': (min-width: 560px),   // Medium Mobile Phone in Portrait                                                  {481px to 560px}
+    'sm': (min-width: 640px),   // Small/Medium Mobile Phone in Landscape,  Large Mobile Phone in Portrait          {561px to 640px}
+    'md': (min-width: 768px),   // Large Mobile Phone in Landscape,         Small Tablet in Portrait                {641px to 768px}    eg. Nexus 6p, iPad Mini
+    'lg': (min-width: 960px),   // Small Tablet in Landscape,               Large Tablet in Portrait                {769px to 960px}    eg. iPad Mini, iPad
+    'xl': (min-width: 1200px),  // Large Tablet in Landscape,               Desktop Computers                       {961px and more}    eg. iPad, Mac, PC
+);
+
+$columns:               12;
+
+$gutter-width:          15px;
+$spacer-height:         10px;
+$col-padding-side:      $gutter-width / 2;
+$col-padding-top:       0;
+$col-padding-bottom:    0;
+$col-padding:           $col-padding-top $col-padding-side $col-padding-bottom $col-padding-side;
+
+$row-margin-top:        $spacer-height;
+
+$box-shadow:            #333333 3px 3px 2px;
+
+@mixin respond-to($breakpoint, $max: false) {
+    $raw-query: map-get($breakpoints, $breakpoint);
+
+    @if $raw-query {
+        $query: if(
+            type-of($raw-query) == 'string',
+            unquote($raw-query),
+            inspect($raw-query)
+        );
+
+        @if $query {
+            @if $max == true {
+                @media only screen and (max-width: #{$query - 1}) {
+                  @content;
+                } 
+            } @else {
+                @media only screen and (min-width: #{$query}) {
+                  @content;
+                } 
+            }
+            
+        } @else {
+            @content;
+        }  
+    } @else {
+        @error 'No value found for `#{$breakpoint}`. '
+             + 'Please make sure it is defined in `$breakpoints` map.';
+    }
+}
+
+@mixin generate-columns-for-size($size, $columns) {
+    $col-widths:();
+    
+    @for $i from 1 through $columns {
+        $width: 100% / ($columns / $i);
+      
+        @if not index($col-widths, $width) {
+            .col.#{$size}#{$i} {
+                width: $width;
+            }
+
+            $col-widths: append($col-widths, $width, comma);
+        }   
+    }
+}
+
+@mixin transition($value) {
+    -webkit-transition: $value;
+    -moz-transition: $value;
+    -o-transition: $value;
+    transition: $value;
+}
+
+@mixin border-radius($value) {
+    -webkit-border-radius: $value;
+    -moz-border-radius: $value;
+    border-radius: $value;
+}
+
+@function strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+   @return $number / ($number * 0 + 1);
+  }
+
+  @return $number;
+}

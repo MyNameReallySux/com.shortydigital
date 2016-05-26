@@ -1,5 +1,27 @@
-<h1>{{title}}</h1>
-<ul>
-    <li><a href="/">    Home</a></li>
-    <li><a href="/blog">Blog</a></li>
-</ul>
+{{#if admin}}
+<div class="admin">
+    <div class="button-nav">
+        <ul>
+            <li>Link 1</li>
+            <li>Link 2</li>
+            <li>Link 3</li>
+        </ul>
+    </div>
+</div>
+{{/if}}
+<div class="top-bar">
+    <div class="container">
+        <h1>{{title}}</h1>
+    </div>
+</div>
+<div class="nav">
+     <div class="container">
+        <div class="menu-btn">...</div>
+        <ul>
+            <li><a href="/">            Home</a></li>
+            <li><a href="/about">       About</a></li>
+            <li><a href="/blog">        Blog</a></li>
+            <li><a href="/downloads">   Downloads</a></li>
+        </ul>
+     </div>
+</div>

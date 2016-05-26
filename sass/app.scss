@@ -1,3 +1,58 @@
+// #############################
+//  Data
+//  -   SCSS only
+// #############################
+
+// #############################
+// App Config - this is where most of your magic will happen
+// #############################
+@import "config";  // Editing the config file sets the theme for the project
+
+// #############################
+// Import core Sass libraries
+// #############################
+@import "lib/bourbon/bourbon";
+
+// #############################
+// Standard CSS reset stuff here
+// #############################
+@import "reset";
+
+// #############################
+// Base CSS files
+// #############################
+@import "typography";
+@import "columns";
+@import "nav";
+@import "panels";
+@import "forms";
+@import "chips";
+@import "buttons";
+
+
+// #############################
+// UI Patterns and Modules
+// State is addressed within the component code itself
+// #############################
+
+// @import "ui_patterns/manifest";
+// @import "modules/manifest";
+
+// #############################
+// Vendor specific styles / modules
+// #############################
+// @import "vendors/manifest";
+
+// #############################
+// Layouts
+// #############################
+// @import "layouts/manifest";
+
+/* ############################
+    Application Styles
+    -   scss/app.scss
+############################ */
+
 h1, h2, h3, h4, h5, h6 {
   margin: 5px 0;
   padding: 0 0 5px 0; 
@@ -18,82 +73,3 @@ body {
     box-sizing:border-box;
 }
 
-%clearfix:after {
-    display :   block;
-    clear   :   both;
-    content :   '';
-}
-
-$grid-spacing: 3%;
-$columns: 12;
-
-.container {
-    width: 100%;
-    max-width: 960px;
-}
-
-.row {
-    @extend %clearfix;
-    
-    & + & {
-        margin-top: $grid-spacing;
-    }
-}
-
-.col {
-    float: left;
-    margin-right: $grid-spacing;
-    
-    &:last-child {
-        margin-right:0%;
-    }
-}
-
-$sizes: "xs" '',
-        "ms" '480',
-        "sm" '640',
-        "md" '768',
-        "lg" '960',
-        "xl" '1200';
-@for $i from 1 through length($sizes) {
-    $pair: nth($sizes, $i);
-    $size: nth($pair, 1);
-    $media: nth($pair, 2);
-    
-    
-    // @debug $size $media;
-    
-    
-    $col-widths: ();
-    if($media -eq ''){
-        @for $j from 1 through $columns {
-            $width: ($j / $columns);
-            
-            // @debug "#{$width} : j is #{$j}";
-            
-            @if not index($col-widths, $width) {
-                .col .#{$size}#{$j} {
-                    width: $width * 100%;
-                }
-
-                $col-widths: append($col-widths, $width, comma);
-            }   
-        }
-    } else {
-        @media only screen and ('min-width: #{$media}px'){  
-            @for $j from 1 through $columns {
-                $width: ($j / $columns);
-                
-                // @debug "#{$width} : j is #{$j}";
-                
-                @if not index($col-widths, $width) {
-                    .col .#{$size}#{$j} {
-                        width: $width * 100%;
-                    }
-                    $col-widths: append($col-widths, $width, comma);
-                }   
-            }
-        }   
-    }
-   
-}

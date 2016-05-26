@@ -1,0 +1,18 @@
+{{#if admin}}
+<div class="nav inverse">
+     <div class="container">
+        <div class="menu-btn">...</div>
+        <ul>
+            <li><a href="/blog/new">    New Post</a></li>
+            {{#if post}}
+                <li><a href="/blog/{{post._id}}/edit">      Edit Post</a></li>
+                <li><a href="/blog/{{post._id}}/delete">    Delete Post</a></li>
+
+            {{else}}
+                <li><a class="disabled" href="#">   Edit Post</a></li>
+                <li><a class="disabled" href="#">   Delete Post</a></li>
+            {{/if}}
+        </ul>
+     </div>
+</div>
+{{/if}}

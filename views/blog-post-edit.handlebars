@@ -1,0 +1,33 @@
+{{#if admin}}
+    {{> header-blog}}
+{{/if}}
+<div class="container">
+    <form method="post">
+        <div>
+            <div>
+                <input id="newArticleTitle"
+                       type="text" 
+                       name="title" 
+                       value="{{post.title}}"
+                       placeholder="Title"/>
+                <input id="newArticleAuthor"
+                       type="text" 
+                       name="author" 
+                       value="{{post.author}}"
+                       placeholder="Author"/>
+            </div>
+            <div>
+                <textarea id="newArticleBody"
+                          type="text" 
+                          name="body"
+                          style="min-width: 500px; min-height: 300px;"
+                          placeholder="Enter post content here...">{{post.body}}</textarea>
+            </div>
+            <div>
+                <input id="editArticleSubmit"
+                       type="submit" 
+                       value="Send"/>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,31 +1,28 @@
+var util = require('util');
+
 String.prototype.capitalize = function() {
     return this.charAt(0).toUpperCase() + this.slice(1);
 }
 
-
-
 String.prototype.singularize = function(){
     if(this.charAt(this.length - 1) == 's') {
         return this.slice(0, this.length - 1);
+    } else {
+        return this;
     }
 }
 
 String.prototype.pluralize = function(){
     if(this.charAt(this.length - 1) != 's') {
         return this + 's';
+    } else {
+        return this;
     }
 }
 
 String.prototype.isEquivalent = function(value){
     return this.toString() == value.singularize() || this.toString() == value.pluralize()
-}
-       
-isSet = function(variable){
-    return (typeof variable != undefined)
-        && variable !== null 
-        && variable != ''
-        && variable != undefined;
-}
+}      
 
 String.prototype.splitBy = function(type){
     if(type.isEquivalent('word')){
@@ -46,22 +43,48 @@ String.prototype.shortenBy = function(type, limit){
         var words = this.splitBy(type);
         if (words.length > limit) {
             var snippet = words.slice(0, limit)
-            console.dir(snippet, logopts);
             snippet = snippet.join(" ");
-            console.dir(snippet, logopts);
             snippet = snippet.trim() + " ...";
-            console.dir(snippet, logopts);
             return snippet;
         } else {
             return words.join(" ");
         } 
-        
     } 
 }
-       
+
+isSet = function(variable){
+    return (typeof variable != undefined)
+        && variable !== null 
+        && variable != ''
+        && variable != undefined;
+}
+
+isString = function(variable){
+    return (typeof variable == "string" && isSet(variable));
+}
+
+isNum = function(variable){
+    return (typeof variable == "number" && isSet(variable));
+}
+
+isArray = function(variable){
+    return (util.isArray(variable) && isSet(variable));
+}
+
+isObject = function(variable){
+    return (typeof variable == "object" && isSet(variable));
+}
+
+getErrorMsg = function(req, res, err){
+    errorMap = {
+        404 :   "There was no page found at '" + req + "'.",
+        500 :   "There was an internal server error. Please send an email to " + require() + "<" + owner
+    }
+}
+
 logopts = {
     showHidden: true,
-    depth: 2,
+    depth: 3,
     colors: true
 }
 

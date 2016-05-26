@@ -1,7 +1,10 @@
 {{!< layout/master.handlebars}}
 {{!-- blog-post.handlebars in views--}}
-
-<div>
+{{#if admin}}
+    {{> header-blog}}
+{{/if}}
+{{#if post}}
+<div class="container">
     <h2>{{post.title}}</h2>
     <h5>Posted By: {{post.author}}</h5>
     <div>
@@ -10,3 +13,4 @@
         </p>
     </div>
 </div>
+{{/if}}

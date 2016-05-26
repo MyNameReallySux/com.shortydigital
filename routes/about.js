@@ -3,7 +3,7 @@ var express = require('express');
 /* GET about page. */
 this.init = function(app, args){
     app.get('/about', function(req, res, next) {
-        console.log("Loading /" + name);
+        console.log("Loading /" + args.name);
         res.render('about', {
             title: args.title
         });

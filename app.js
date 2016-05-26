@@ -15,6 +15,7 @@ var logger          = require('morgan');                // Logger               
 var cookieParser    = require('cookie-parser');         // Parse cookies            |
 var bodyParser      = require('body-parser');           // Parse html               |
 var favicon         = require('serve-favicon');         // Serves favicon           |
+var livereload      = require('livereload');
 
 var helpers = require('./scripts/helpers');
 var utils = require('./scripts/utils');
@@ -22,13 +23,16 @@ var Drivers = require('./scripts/driver');
 var Provider = Drivers.Provider;
 
 var app = express();
+var server = livereload.createServer();
+server.watch(__dirname + "/public");
 
 // main domain <www.shortydigital.com>
-var package = "com.shortydigital";
+var package = require('./package.json');
+var name = package.name;
 var domain = "shortydigital.com";
 var name = "Shorty Digital"
 
-console.log("Starting " + package);
+console.log("Starting " + domain);
 
 // set application config
 app.set('port', process.env.port || 4000);
@@ -77,6 +81,7 @@ files.forEach(function(file){
 });
 
 // catch 404 and forward to error handler
+
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
@@ -88,9 +93,12 @@ app.use(function(req, res, next) {
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
+    var msg = getErrorMsg(err);
     res.render('error', {
-      message: err.message,
-      error: err
+        title   :   name + " | Error",
+        message :   err.message,
+        status  :   err.status || 500,
+        error   :   err
     });
   });
 }
@@ -101,10 +109,10 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error', {
     message: err.message,
+    status: err.status || 500,
     error: {}
   });
 });
-
 
 app.listen(app.get('port'));
 console.log("Listening on port " + app.get('port'));

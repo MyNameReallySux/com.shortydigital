@@ -1,32 +1,3 @@
-dirs = {
-    "css"        :  'public/css/',
-    "sass"       :  'sass/',
-    "handlebars" :  'routes/'
-}
-
-files = {
-    dist : {
-        "css"   :   dirs.css  + 'app.css',
-    },
-    build : {
-        "sass"  :   dirs.sass + 'app.scss'    
-    },
-    "all" : {
-        "sass"        : dirs.sass       + '/**/*.scss',
-        "handlebars"  : dirs.handlebars + '/**/*.handlebars'
-    }
-}
-
-var dirsCss = dirs.css;
-var dirsScss = dirs.sass;
-var dirsHandlebars = dirs.handlebars;
-
-var filesDistCss = files.dist.css;
-var filesBuildSass = files.build.sass;
-var filesAllSass = files.all.sass;
-var filesAllHandlebars = files.all.handlebars;
-
-
 module.exports = function(grunt) {
     grunt.initConfig ({
         sass: {
@@ -37,12 +8,20 @@ module.exports = function(grunt) {
                 }
             }
         }, 
+        cssbeautifier : {
+            files : ["public/**/*.css"],
+            options : {
+                indent: '    ',
+                openbrace: 'end-of-line',
+                autosemicolon: true
+            }
+        },
         watch: {
             source: {
-                files: ['sass/**/*.scss'],
-                tasks: ['sass'],
+                files: ['sass/**/*.scss', 'routes/**/*.handlebars'],
+                tasks: ['sass', 'cssbeautifier'],
                 options: {
-                    livereload: true, // needed to run LiveReload
+                    livereload: false, // needed to run LiveReload
                 }
             }
         }
@@ -50,6 +29,7 @@ module.exports = function(grunt) {
 
     grunt.loadNpmTasks('grunt-contrib-handlebars');
     grunt.loadNpmTasks('grunt-sass');
+    grunt.loadNpmTasks('grunt-cssbeautifier');
     grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.registerTask('default', ['sass']);
+    grunt.registerTask('default', ['sass', 'cssbeautifier']);
 };

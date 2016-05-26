@@ -1,5 +1,5 @@
 {
-  "name": "com.shortydigital",
+  "name": "Shorty Digital",
   "version": "0.1.0",
   "description": "Chris Coppola's portfolio website",
   "main": "index.js",
@@ -42,10 +42,14 @@
     "underscore": "^1.8.3"
   },
   "devDependencies": {
+    "express-livereload": "0.0.24",
     "grunt": "^1.0.1",
     "grunt-contrib-handlebars": "^1.0.0",
     "grunt-contrib-watch": "^1.0.0",
+    "grunt-cssbeautifier": "^0.1.2",
     "grunt-sass": "^1.2.0",
+    "livereload": "^0.4.1",
+    "livereload-js": "^2.2.2",
     "sass": "^0.5.0"
   }
 }

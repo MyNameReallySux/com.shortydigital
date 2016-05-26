@@ -1,0 +1,21 @@
+{{#if admin}}
+    {{> header-blog}}
+
+    <div class="container">
+        <form method="post">
+            <div>
+                <div>
+                    <input type="radio" id="toggle-on" name="toggle" checked
+><label for="toggle-on">On</label
+><input type="radio" id="toggle-off" name="toggle"
+><label for="toggle-off">Off</label>
+                </div>
+                <div>
+                    <input id="editArticleSubmit"
+                           type="submit" 
+                           value="Send"/>
+                </div>
+            </div>
+        </form>
+    </div>
+{{/if}}

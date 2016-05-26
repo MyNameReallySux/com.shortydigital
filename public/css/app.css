@@ -1,6 +1,669 @@
+/* ############################
+    Reset Styles
+    -   scss/_reset.scss
+
+    http://meyerweb.com/eric/tools/css/reset/ 
+    v2.0 | 20110126
+    License: none (public domain)
+############################ */
+* {
+    box-sizing: border-box;
+}
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+blockquote, q {
+    quotes: none;
+}
+
+blockquote:before, blockquote:after {
+    content: '';
+    content: none;
+}
+
+q:before, q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.row:after {
+    display: block;
+    clear: both;
+    content: '';
+}
+
+/* ############################
+    Typography Styles
+    -   scss/_reset.scss
+############################ */
+a {
+    text-decoration: none;
+}
+
+body {
+    font-family: monospace;
+}
+
 h1, h2, h3, h4, h5, h6 {
-  margin: 5px 0;
-  padding: 0 0 5px 0; }
+    font-weight: bold;
+    font-family: monospace;
+}
+
+h1 {
+    font-size: 250%;
+}
+
+h2 {
+    font-size: 200%;
+}
+
+h3 {
+    font-size: 150%;
+}
+
+h4 {
+    font-size: 125%;
+}
+
+h5 {
+    font-size: 110%;
+}
+
+h6 {
+    font-size: 90%;
+}
+
+p {
+    text-align: justify;
+}
+
+/* ############################
+    Column Styles
+    -   scss/_columns.scss
+############################ */
+.container {
+    width: 100%;
+    max-width: 1064px;
+    margin: 0 auto;
+    padding: 10px 7.5px;
+}
+
+.container .row {
+    margin-left: -7.5px;
+    margin-right: -7.5px;
+}
+
+.row {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.row + .row {
+    margin-top: 10px;
+}
+
+.col {
+    float: left;
+    width: 100%;
+    padding: 0 7.5px 0 7.5px;
+}
+
+.col > .col {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.col.xs1 {
+    width: 8.3333333333%;
+}
+
+.col.xs2 {
+    width: 16.6666666667%;
+}
+
+.col.xs3 {
+    width: 25%;
+}
+
+.col.xs4 {
+    width: 33.3333333333%;
+}
+
+.col.xs5 {
+    width: 41.6666666667%;
+}
+
+.col.xs6 {
+    width: 50%;
+}
+
+.col.xs7 {
+    width: 58.3333333333%;
+}
+
+.col.xs8 {
+    width: 66.6666666667%;
+}
+
+.col.xs9 {
+    width: 75%;
+}
+
+.col.xs10 {
+    width: 83.3333333333%;
+}
+
+.col.xs11 {
+    width: 91.6666666667%;
+}
+
+.col.xs12 {
+    width: 100%;
+}
+
+@media only screen and (min-width: 560px) {
+    .col.ms1 {
+        width: 8.3333333333%;
+    }
+
+    .col.ms2 {
+        width: 16.6666666667%;
+    }
+
+    .col.ms3 {
+        width: 25%;
+    }
+
+    .col.ms4 {
+        width: 33.3333333333%;
+    }
+
+    .col.ms5 {
+        width: 41.6666666667%;
+    }
+
+    .col.ms6 {
+        width: 50%;
+    }
+
+    .col.ms7 {
+        width: 58.3333333333%;
+    }
+
+    .col.ms8 {
+        width: 66.6666666667%;
+    }
+
+    .col.ms9 {
+        width: 75%;
+    }
+
+    .col.ms10 {
+        width: 83.3333333333%;
+    }
+
+    .col.ms11 {
+        width: 91.6666666667%;
+    }
+
+    .col.ms12 {
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 640px) {
+    .col.sm1 {
+        width: 8.3333333333%;
+    }
+
+    .col.sm2 {
+        width: 16.6666666667%;
+    }
+
+    .col.sm3 {
+        width: 25%;
+    }
+
+    .col.sm4 {
+        width: 33.3333333333%;
+    }
+
+    .col.sm5 {
+        width: 41.6666666667%;
+    }
+
+    .col.sm6 {
+        width: 50%;
+    }
+
+    .col.sm7 {
+        width: 58.3333333333%;
+    }
+
+    .col.sm8 {
+        width: 66.6666666667%;
+    }
+
+    .col.sm9 {
+        width: 75%;
+    }
+
+    .col.sm10 {
+        width: 83.3333333333%;
+    }
+
+    .col.sm11 {
+        width: 91.6666666667%;
+    }
+
+    .col.sm12 {
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .col.md1 {
+        width: 8.3333333333%;
+    }
+
+    .col.md2 {
+        width: 16.6666666667%;
+    }
+
+    .col.md3 {
+        width: 25%;
+    }
+
+    .col.md4 {
+        width: 33.3333333333%;
+    }
+
+    .col.md5 {
+        width: 41.6666666667%;
+    }
+
+    .col.md6 {
+        width: 50%;
+    }
+
+    .col.md7 {
+        width: 58.3333333333%;
+    }
+
+    .col.md8 {
+        width: 66.6666666667%;
+    }
+
+    .col.md9 {
+        width: 75%;
+    }
+
+    .col.md10 {
+        width: 83.3333333333%;
+    }
+
+    .col.md11 {
+        width: 91.6666666667%;
+    }
+
+    .col.md12 {
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 960px) {
+    .col.lg1 {
+        width: 8.3333333333%;
+    }
+
+    .col.lg2 {
+        width: 16.6666666667%;
+    }
+
+    .col.lg3 {
+        width: 25%;
+    }
+
+    .col.lg4 {
+        width: 33.3333333333%;
+    }
+
+    .col.lg5 {
+        width: 41.6666666667%;
+    }
+
+    .col.lg6 {
+        width: 50%;
+    }
+
+    .col.lg7 {
+        width: 58.3333333333%;
+    }
+
+    .col.lg8 {
+        width: 66.6666666667%;
+    }
+
+    .col.lg9 {
+        width: 75%;
+    }
+
+    .col.lg10 {
+        width: 83.3333333333%;
+    }
+
+    .col.lg11 {
+        width: 91.6666666667%;
+    }
+
+    .col.lg12 {
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .col.xl1 {
+        width: 8.3333333333%;
+    }
+
+    .col.xl2 {
+        width: 16.6666666667%;
+    }
+
+    .col.xl3 {
+        width: 25%;
+    }
+
+    .col.xl4 {
+        width: 33.3333333333%;
+    }
+
+    .col.xl5 {
+        width: 41.6666666667%;
+    }
+
+    .col.xl6 {
+        width: 50%;
+    }
+
+    .col.xl7 {
+        width: 58.3333333333%;
+    }
+
+    .col.xl8 {
+        width: 66.6666666667%;
+    }
+
+    .col.xl9 {
+        width: 75%;
+    }
+
+    .col.xl10 {
+        width: 83.3333333333%;
+    }
+
+    .col.xl11 {
+        width: 91.6666666667%;
+    }
+
+    .col.xl12 {
+        width: 100%;
+    }
+}
+
+.row:after {
+    display: block;
+    clear: both;
+    content: '';
+}
+
+/* ############################
+    Navigation Styles
+    -   scss/_nav.scss
+############################ */
+.nav {
+    position: relative;
+    height: 50px;
+    background: #eeeeee;
+    line-height: 50px;
+}
+
+.nav .container {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.nav .menu-btn {
+    display: none;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    margin: 5px;
+    text-align: center;
+    background: #eeeeee;
+    border: #dddddd solid 1px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.nav ul {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.nav ul > li {
+    display: inline-block;
+}
+
+.nav ul > li > a {
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+    padding: 5px 15px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-transition: all 0.5s ease 0s;
+    -moz-transition: all 0.5s ease 0s;
+    transition: all 0.5s ease 0s;
+}
+
+.nav ul > li > a:hover {
+    background: black;
+    color: white;
+}
+
+.top-bar {
+    background: #777777;
+    color: white;
+}
+
+.admin {
+    background: black;
+    color: white;
+    height: 20px;
+}
+
+.admin .button-nav {
+    padding: 0 5px;
+}
+
+.admin .button-nav > ul {
+    float: left;
+    height: 20px;
+    line-height: 20px;
+    font-size: 12px;
+    fomt-weight: bold;
+    color: white;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.admin .button-nav > ul > li {
+    display: inline-block;
+}
+
+.admin .button-nav > ul > li > a {
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+    -webkit-transition: all 0.5s ease 0s;
+    -moz-transition: all 0.5s ease 0s;
+    transition: all 0.5s ease 0s;
+}
+
+.admin .button-nav > ul > li > a:hover {
+    color: #fffb98;
+}
+
+.admin .button-nav > ul > li + li {
+    margin-left: 5px;
+}
+
+@media only screen and (max-width: 639px) {
+    .nav .menu-btn {
+        display: inline-block;
+    }
+
+    .nav ul {
+        position: relative;
+        display: block;
+        justify-content: flex-start;
+        background: #eeeeee;
+        bottom: 0;
+        height: 100%;
+        overflow: hidden;
+        width: 60%;
+        max-width: 480px;
+    }
+
+    .nav ul > li {
+        display: block;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+    }
+
+    .nav ul > li > a {
+        display: block;
+        width: 100%;
+        height: 100%;
+        padding: 0;
+    }
+}
+
+/* ############################
+    Panel Styles
+    -   scss/_panels.scss
+############################ */
+.panel {
+    background: #eeeeee;
+    padding: 15px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+/* ############################
+    Column Styles
+    -   scss/_chips.scss
+############################ */
+.chips {
+    display: flex;
+    justify-content: flex-left;
+    flex-wrap: wrap;
+}
+
+.chips li, .chips .chips.fix:after, .chips .chip {
+    height: 32px;
+    line-height: 32px;
+    font-size: 85%;
+    padding: 0px 12px;
+    margin-bottom: 3px;
+    margin-right: 3px;
+}
+
+.chips li {
+    display: inline-block;
+    background: #eeeeee;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+}
+
+.chips li.fix {
+    background: transparent;
+}
+
+.chips.fix:after {
+    content: "";
+    display: inline-block;
+    background: transparent;
+}
+
+.panel .chips > li {
+    background: #dddddd;
+}
+
+.panel .chips > li.fix {
+    background: transparent;
+}
+
+.chip {
+    display: inline-block;
+    background: #eeeeee;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+}
+
+.panel .chip {
+    background: #dddddd;
+}
+
+.panel .chip.fix {
+    background: transparent;
+}
+
+.chip.fix {
+    background: transparent;
+}
+
+/* ############################
+    Application Styles
+    -   scss/app.scss
+############################ */
+h1, h2, h3, h4, h5, h6 {
+    margin: 5px 0;
+    padding: 0 0 5px 0;
+}
 
 h1 + div,
 h2 + div,
@@ -8,243 +671,11 @@ h3 + div,
 h4 + div,
 h5 + div,
 h6 + div {
-  margin-top: 5px; }
+    margin-top: 5px;
+}
 
 body {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box; }
-
-.row:after {
-  display: block;
-  clear: both;
-  content: ''; }
-
-.container {
-  width: 100%;
-  max-width: 960px; }
-
-.row + .row {
-  margin-top: 3%; }
-
-.col {
-  float: left;
-  margin-right: 3%; }
-  .col:last-child {
-    margin-right: 0%; }
-
-if($media -eq '') .col .xs1 {
-  width: 8.3333333333%; }
-
-if($media -eq '') .col .xs2 {
-  width: 16.6666666667%; }
-
-if($media -eq '') .col .xs3 {
-  width: 25%; }
-
-if($media -eq '') .col .xs4 {
-  width: 33.3333333333%; }
-
-if($media -eq '') .col .xs5 {
-  width: 41.6666666667%; }
-
-if($media -eq '') .col .xs6 {
-  width: 50%; }
-
-if($media -eq '') .col .xs7 {
-  width: 58.3333333333%; }
-
-if($media -eq '') .col .xs8 {
-  width: 66.6666666667%; }
-
-if($media -eq '') .col .xs9 {
-  width: 75%; }
-
-if($media -eq '') .col .xs10 {
-  width: 83.3333333333%; }
-
-if($media -eq '') .col .xs11 {
-  width: 91.6666666667%; }
-
-if($media -eq '') .col .xs12 {
-  width: 100%; }
-
-if($media -eq '') .col .ms1 {
-  width: 8.3333333333%; }
-
-if($media -eq '') .col .ms2 {
-  width: 16.6666666667%; }
-
-if($media -eq '') .col .ms3 {
-  width: 25%; }
-
-if($media -eq '') .col .ms4 {
-  width: 33.3333333333%; }
-
-if($media -eq '') .col .ms5 {
-  width: 41.6666666667%; }
-
-if($media -eq '') .col .ms6 {
-  width: 50%; }
-
-if($media -eq '') .col .ms7 {
-  width: 58.3333333333%; }
-
-if($media -eq '') .col .ms8 {
-  width: 66.6666666667%; }
-
-if($media -eq '') .col .ms9 {
-  width: 75%; }
-
-if($media -eq '') .col .ms10 {
-  width: 83.3333333333%; }
-
-if($media -eq '') .col .ms11 {
-  width: 91.6666666667%; }
-
-if($media -eq '') .col .ms12 {
-  width: 100%; }
-
-if($media -eq '') .col .sm1 {
-  width: 8.3333333333%; }
-
-if($media -eq '') .col .sm2 {
-  width: 16.6666666667%; }
-
-if($media -eq '') .col .sm3 {
-  width: 25%; }
-
-if($media -eq '') .col .sm4 {
-  width: 33.3333333333%; }
-
-if($media -eq '') .col .sm5 {
-  width: 41.6666666667%; }
-
-if($media -eq '') .col .sm6 {
-  width: 50%; }
-
-if($media -eq '') .col .sm7 {
-  width: 58.3333333333%; }
-
-if($media -eq '') .col .sm8 {
-  width: 66.6666666667%; }
-
-if($media -eq '') .col .sm9 {
-  width: 75%; }
-
-if($media -eq '') .col .sm10 {
-  width: 83.3333333333%; }
-
-if($media -eq '') .col .sm11 {
-  width: 91.6666666667%; }
-
-if($media -eq '') .col .sm12 {
-  width: 100%; }
-
-if($media -eq '') .col .md1 {
-  width: 8.3333333333%; }
-
-if($media -eq '') .col .md2 {
-  width: 16.6666666667%; }
-
-if($media -eq '') .col .md3 {
-  width: 25%; }
-
-if($media -eq '') .col .md4 {
-  width: 33.3333333333%; }
-
-if($media -eq '') .col .md5 {
-  width: 41.6666666667%; }
-
-if($media -eq '') .col .md6 {
-  width: 50%; }
-
-if($media -eq '') .col .md7 {
-  width: 58.3333333333%; }
-
-if($media -eq '') .col .md8 {
-  width: 66.6666666667%; }
-
-if($media -eq '') .col .md9 {
-  width: 75%; }
-
-if($media -eq '') .col .md10 {
-  width: 83.3333333333%; }
-
-if($media -eq '') .col .md11 {
-  width: 91.6666666667%; }
-
-if($media -eq '') .col .md12 {
-  width: 100%; }
-
-if($media -eq '') .col .lg1 {
-  width: 8.3333333333%; }
-
-if($media -eq '') .col .lg2 {
-  width: 16.6666666667%; }
-
-if($media -eq '') .col .lg3 {
-  width: 25%; }
-
-if($media -eq '') .col .lg4 {
-  width: 33.3333333333%; }
-
-if($media -eq '') .col .lg5 {
-  width: 41.6666666667%; }
-
-if($media -eq '') .col .lg6 {
-  width: 50%; }
-
-if($media -eq '') .col .lg7 {
-  width: 58.3333333333%; }
-
-if($media -eq '') .col .lg8 {
-  width: 66.6666666667%; }
-
-if($media -eq '') .col .lg9 {
-  width: 75%; }
-
-if($media -eq '') .col .lg10 {
-  width: 83.3333333333%; }
-
-if($media -eq '') .col .lg11 {
-  width: 91.6666666667%; }
-
-if($media -eq '') .col .lg12 {
-  width: 100%; }
-
-if($media -eq '') .col .xl1 {
-  width: 8.3333333333%; }
-
-if($media -eq '') .col .xl2 {
-  width: 16.6666666667%; }
-
-if($media -eq '') .col .xl3 {
-  width: 25%; }
-
-if($media -eq '') .col .xl4 {
-  width: 33.3333333333%; }
-
-if($media -eq '') .col .xl5 {
-  width: 41.6666666667%; }
-
-if($media -eq '') .col .xl6 {
-  width: 50%; }
-
-if($media -eq '') .col .xl7 {
-  width: 58.3333333333%; }
-
-if($media -eq '') .col .xl8 {
-  width: 66.6666666667%; }
-
-if($media -eq '') .col .xl9 {
-  width: 75%; }
-
-if($media -eq '') .col .xl10 {
-  width: 83.3333333333%; }
-
-if($media -eq '') .col .xl11 {
-  width: 91.6666666667%; }
-
-if($media -eq '') .col .xl12 {
-  width: 100%; }
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}

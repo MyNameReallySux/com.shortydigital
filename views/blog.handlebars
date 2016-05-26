@@ -1,7 +1,9 @@
 {{!< layout/master.handlebars}}
 {{!-- blog.handlebars in views--}}
-
-<div>
+{{#if admin}}
+    {{> header-blog}}
+{{/if}}
+<div class="container">
     {{#each posts}}
     <h2>{{title}}</h2>
     <h5>Posted By: {{author}}</h5>
@@ -10,5 +12,10 @@
             {{snippet}}
         </p>
     </div>
+    <br/>
+    <div>
+        <a href="/blog/{{_id}}">Read More</a>
+    </div>
+    <hr/>
     {{/each}}
 </div>

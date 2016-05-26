@@ -1,0 +1,291 @@
+// #############################
+//  Data
+//  -   SCSS only
+// #############################
+
+/* ############################
+    Column Styles
+    -   scss/_columns.scss
+############################ */
+
+.container {
+    width: 100%;
+    max-width: 1064px;
+    margin: 0 auto;
+    padding: $spacer-height ($gutter-width / 2);
+    
+    & .row {
+        margin-left: (-1 * $gutter-width / 2);
+        margin-right: (-1 * $gutter-width / 2);
+    }
+}
+
+.row {
+    @extend %clearfix;
+    margin-left: auto;
+    margin-right: auto;
+    & + & {
+        margin-top: $row-margin-top;
+    }
+}
+
+.col {
+    float: left;
+    width: 100%;
+    padding: $col-padding;
+    
+    & > .col {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+@for $i from 1 through length($breakpoints) {
+    $pair:  nth($breakpoints, $i);
+    $size:  nth($pair, 1);
+    $media: nth($pair, 2);
+        
+    @if ($media == '' or $size == 'xs') {
+        @include generate-columns-for-size($size, $columns);
+    } 
+    @if $media != '' and $size != 'xs'{
+        @include respond-to($size){
+            @include generate-columns-for-size($size, $columns);
+        }   
+    }  
+}
+
+// #############################
+//  Debug Styles
+//  -   SCSS only
+// #############################
+
+$debug-bar-size: 22px;
+
+@if $DEBUG == "true" {
+    .container {
+        background: #eeeeee;
+    }
+
+    .col {
+        & > div {
+            position: relative;
+
+            &:before {
+                content: "";
+                border: dotted 1px #888888;
+                background-color: rgba(255, 255, 255, 0);
+                @extend %overlay;
+            }
+            
+            &:after {
+                content: "";
+                @extend %debug-after;
+                @extend %overlay;
+
+            }
+            
+            &:hover:before {
+                content: "";
+                border-style: solid;
+                margin-top: (-1 * $debug-bar-size);
+                border-top-width: $debug-bar-size;
+            }
+            
+            &:hover:after {
+                content: "<div>";
+                top: (-1 * $debug-bar-size + 2);
+                left: 5px
+            }   
+        }
+        
+        &:nth-child(6n+1) {    
+            & > div:hover:before {
+                background: rgba(255, 0, 0, 0.5);
+                border-color: red;
+            }
+            
+            & > div:hover:after {}
+        }
+  
+        &:nth-child(6n+2){ 
+            & > div:hover:before {
+                background: rgba(0, 128, 0, 0.5);
+                border-color: green;
+            }
+            
+            & > div:hover:after {}
+
+        }
+   
+        &:nth-child(6n+3){            
+            & > div:hover:before {
+                background: rgba(0, 0, 255, 0.5);
+                border-color: blue;
+            }
+            
+            & > div:hover:after {}
+
+        }
+    
+        &:nth-child(6n+4){
+            & > div:hover:before {
+                background: rgba(0, 128, 128, 0.5);
+                border-color: teal;
+            }
+            
+            & > div:hover:after {}
+
+        }
+   
+        &:nth-child(6n+5){ 
+            & > div:hover:before {
+                background: rgba(255, 255, 0, 0.5);
+                border-color: yellow;
+            }
+            
+            & > div:hover:after {
+                color: black;
+
+            }
+
+        }
+   
+        &:nth-child(6n+6){ 
+            & > div:hover:before {
+                background: rgba(128, 0, 128, 0.5);
+                border-color: purple;
+            }
+            
+            & > div:hover:after {}
+        }
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+        position: relative;
+
+        &:before {
+            content: "";
+            border: dotted 1px #888888;
+            background-color: rgba(255, 255, 255, 0);
+            @extend %overlay;
+        }
+
+        &:after {
+            content: "";
+            @extend %debug-after;
+            @extend %overlay;
+
+        }
+
+        &:hover:before {
+            content: "";
+            border-style: solid;
+            margin-top: (-1 * $debug-bar-size );
+            border-top-width: $debug-bar-size;
+        }
+
+        &:hover:after {
+            content: "<h#>";
+            top: (-1 * $debug-bar-size + 2);
+            left: 5px
+        }
+    }
+    h1 {    
+        &:hover:before {
+            background: rgba(255, 0, 0, 0.5);
+            border-color: red;
+        }
+
+        &:hover:after {
+            content: "<h1>";
+       }
+    }
+
+    h2 { 
+        &:hover:before {
+            background: rgba(0, 128, 0, 0.5);
+            border-color: green;
+            color: white;
+        }
+
+        &:hover:after {
+            content: "<h2>";
+       }
+
+    }
+
+    h3 {
+        &:hover:before {
+            background: rgba(0, 0, 255, 0.5);
+            border-color: blue;
+        }
+
+        &:hover:after {
+            content: "<h3>";
+       }
+
+    }
+
+    h4 {
+        &:hover:before {
+            background: rgba(0, 128, 128, 0.5);
+            border-color: teal;
+            }
+
+        &:hover:after {
+            content: "<h4>";
+       }
+
+    }
+
+    h5 { 
+        &:hover:before {
+            background: rgba(255, 255, 0, 0.5);
+            border-color: yellow;
+        }
+
+        &:hover:after {
+             content: "<h5>";
+            color: black;
+        }
+
+    }
+
+    h6 { 
+        &:hover:before {
+            background: rgba(128, 0, 128, 0.5);
+            border-color: purple;
+        }
+
+        &:hover:after {
+            content: "<h6>";
+       }
+    }
+}
+
+
+// #############################
+//  Partial Styles
+//  -   SCSS only
+// #############################
+
+%clearfix:after {
+    display :   block;
+    clear   :   both;
+    content :   '';
+}
+
+%overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+%debug-after {
+    color: white;
+    font-weight: bold;
+    font-size: $debug-bar-size - 4;
+}

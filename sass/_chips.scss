@@ -1,0 +1,93 @@
+// #############################
+//  Data
+//  -   SCSS only
+// #############################
+
+$chip-height: 32px;
+$chip-text-size: 32px;
+$chip-margin: 3px;
+$chip-primary-color: #eeeeee;
+$chip-secondary-color: #dddddd;
+$chip-justify: flex-left;
+
+
+/* ############################
+    Column Styles
+    -   scss/_chips.scss
+############################ */
+
+.chips {
+    display: flex;
+    justify-content: $chip-justify;
+    flex-wrap: wrap;
+    
+    %chip-fix {
+        content: "";
+        display: inline-block;
+        background: transparent;
+        @extend %chip-content
+    }
+
+    %chip-content {
+        height: $chip-height;
+        line-height: $chip-height;
+        font-size: 85%;
+        padding: 0px 12px;
+        margin-bottom: $chip-margin;
+        margin-right: $chip-margin;
+    }
+    
+    & li {
+        display: inline-block;
+        background: $chip-primary-color;
+        
+        @extend %chip-content;
+        @include border-radius(20px);
+        
+        &.fix {
+            background: transparent;
+        }
+        
+    }
+    
+    &.fix {
+        &:after {
+            content: "";
+            display: inline-block;
+            background: transparent;
+            @extend %chip-content;
+
+        }
+    }
+    
+    .panel & > li {
+        background: $chip-secondary-color;
+        
+        &.fix {
+            background: transparent;
+        }
+    }
+    
+}
+
+, .chip {
+    display: inline-block;
+    background: $chip-primary-color;
+
+    @extend %chip-content;
+    @include border-radius(20px);
+
+    .panel & {
+        background: $chip-secondary-color;
+        
+        &.fix {
+        background: transparent;
+        }
+    }
+    
+    &.fix {
+        background: transparent;
+    }
+}
+        
+

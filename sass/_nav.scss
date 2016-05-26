@@ -1,0 +1,146 @@
+// #############################
+//  Data
+//  -   SCSS only
+// #############################
+
+$nav-height: 50px;
+$nav-color: #eeeeee;
+
+$nav-btn-margin: 5px;
+$nav-btn-size: $nav-height - $nav-btn-margin * 2;;
+
+/* ############################
+    Navigation Styles
+    -   scss/_nav.scss
+############################ */
+
+.nav {
+    position: relative;
+    height: $nav-height;
+    background: $nav-color;
+    line-height: $nav-height;
+
+    & .container {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+    
+    & .menu-btn {
+        display: none;
+        width: $nav-btn-size;
+        height: $nav-btn-size;
+        line-height: $nav-btn-size;
+        margin: $nav-btn-margin;
+        text-align: center;
+        background: $nav-color;
+        border: #dddddd solid 1px;
+        @include border-radius(5px);
+    }
+    
+    & ul {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        
+        & > li {
+            display: inline-block;
+            
+            & > a {
+                text-transform: uppercase;
+                font-weight: bold;
+                letter-spacing: 1px;
+                padding: 5px 15px;
+                @include border-radius(5px);
+                @include transition(all 0.5s ease 0s);
+                
+                &:hover {
+                    background: black;
+                    color: white;
+                }
+            }
+            &:after {
+                
+            }
+            &:last-child:after {
+                
+            }
+        }
+    }
+}
+
+.top-bar {
+    background: #777777;
+    color: white;
+}
+
+.admin {
+    background: black;
+    color: white;
+    height: 20px;
+    
+    & .button-nav {
+        padding: 0 5px;
+        & > ul {
+            float: left;
+            height: 20px;
+            line-height: 20px;
+            font-size: 12px;
+            fomt-weight: bold;
+            color: white;
+            display: flex;
+            justify-content: flex-start;
+            
+            & > li {
+                display: inline-block;
+            
+                & > a {
+                    text-transform: uppercase;
+                    font-weight: bold;
+                    letter-spacing: 1px;
+                    @include transition(all 0.5s ease 0s);
+
+                    &:hover {
+                        color: #fffb98;
+                    }
+                }
+                
+                & + li {
+                    margin-left: 5px;
+                }
+            }
+        }
+    }
+}
+
+@include respond-to('sm', true){
+    .nav {
+         & .menu-btn {
+            display: inline-block;
+        }
+        & ul {
+            position: relative;
+            display: block;
+            justify-content: flex-start;
+            background: $nav-color;
+            bottom: 0;
+            height: 100%;
+            overflow: hidden;
+            width: 60%;
+            max-width: 480px;
+            
+            & > li {
+                display: block;
+                width: 100%;
+                height: 100%;
+                text-align: center;
+                
+                & > a {
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+                    padding: 0;
+                }
+            }
+        }
+    }
+}

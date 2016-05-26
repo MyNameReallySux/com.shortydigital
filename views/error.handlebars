@@ -1,1 +1,14 @@
-ERROR
+{{!< layout/master.handlebars}}
+{{!-- error.handlebars in views--}}
+
+<div class="container">
+    <div class="col md2">
+    
+    </div>
+    <div class="col md8">
+        <h2>We have a problem!</h2>
+        <h1 class="{{error-class}}">{{status}}</h1>
+        <p>{{error}}</p>
+        <p>{{message}}</p>
+    </div>
+</div>

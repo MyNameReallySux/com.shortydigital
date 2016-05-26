@@ -1,0 +1,16 @@
+// #############################
+//  Data
+//  -   SCSS only
+// #############################
+
+/* ############################
+    Panel Styles
+    -   scss/_panels.scss
+############################ */
+
+.panel {
+    background: #eeeeee;
+    padding: 15px;
+    @include border-radius(10px);
+    margin-bottom: $spacer-height;
+}
