@@ -5,53 +5,68 @@
 
     <h2>This is the {{title}} page!</h2>
     <div class="row">
-        <div class="col md4">
-            <div>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eleifend nunc eu dolor scelerisque, eu elementum nisi sodales. Aenean faucibus accumsan ligula, non ornare augue finibus tristique. Nullam pellentesque et orci vitae tempor. Nullam in purus lacinia libero aliquam placerat. Nulla eleifend cursus nunc, id imperdiet justo molestie nec. Morbi
-                </p>
-            </div>
-        </div>
+        <div class="col{{#if posts}} m8{{/if}}">
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eleifend nunc eu dolor scelerisque, eu elementum nisi sodales. Aenean faucibus accumsan ligula, non ornare augue finibus tristique. Nullam pellentesque et orci vitae tempor. Nullam in purus lacinia libero aliquam placerat. Nulla eleifend cursus nunc, id imperdiet justo molestie nec. Morbi
+            </p>
+
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eleifend nunc eu dolor scelerisque, eu elementum nisi sodales. Aenean faucibus accumsan ligula, non ornare augue finibus tristique. Nullam pellentesque et orci vitae tempor. Nullam in purus lacinia libero aliquam placerat. Nulla eleifend cursus nunc, id imperdiet justo molestie nec. Morbi
+            </p>
             
-        <div class="col md4">
-            <div>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eleifend nunc eu dolor scelerisque, eu elementum nisi sodales. Aenean faucibus accumsan ligula, non ornare augue finibus tristique. Nullam pellentesque et orci vitae tempor. Nullam in purus lacinia libero aliquam placerat. Nulla eleifend cursus nunc, id imperdiet justo molestie nec. Morbi
-                </p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eleifend nunc eu dolor scelerisque, eu elementum nisi sodales. Aenean faucibus accumsan ligula, non ornare augue finibus tristique. Nullam pellentesque et orci vitae tempor. Nullam in purus lacinia libero aliquam placerat. Nulla eleifend cursus nunc, id imperdiet justo molestie nec. Morbi
+            </p>
+            <div class="panel prompt light-3">
+                <a href="#" class="btn prompt x-small">x-small</a>
+                <a href="#" class="btn info small">small</a>
+                <a href="#" class="btn">normal</a>
+                <a href="#" class="btn success large">large</a>
+                <a href="#" class="btn warning x-large">x-large</a>
+                <a href="#" class="btn danger huge">huge</a>
+            </div>
+            
+            <div class="flat panel info light-3">
+                <a href="#" class="btn prompt x-small">x-small</a>
+                <a href="#" class="btn info small">small</a>
+                <a href="#" class="btn">normal</a>
+                <a href="#" class="btn success large">large</a>
+                <a href="#" class="btn warning x-large">x-large</a>
+                <a href="#" class="btn danger huge">huge</a>
+            </div>
+            
+            <div class="modern panel success light-3">
+                <a href="#" class="btn prompt x-small">x-small</a>
+                <a href="#" class="btn info small">small</a>
+                <a href="#" class="btn">normal</a>
+                <a href="#" class="btn success large">large</a>
+                <a href="#" class="btn warning x-large">x-large</a>
+                <a href="#" class="btn danger huge">huge</a>
             </div>
         </div>
-        
-        <div class="col md4">
-            <div>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eleifend nunc eu dolor scelerisque, eu elementum nisi sodales. Aenean faucibus accumsan ligula, non ornare augue finibus tristique. Nullam pellentesque et orci vitae tempor. Nullam in purus lacinia libero aliquam placerat. Nulla eleifend cursus nunc, id imperdiet justo molestie nec. Morbi
-                </p>
+        {{#if posts}}
+        <div class="col m4">
+            <h3>Recent Blog Posts</h3>
+            <div class="row">
+                <div class="container">
+                    {{#each posts}}
+                        <h3>{{title}}</h3>
+                        <h5>Posted By: {{author}}</h5>
+                        <div>
+                            <p>
+                                {{snippet}}
+                            </p>
+                        </div>
+                        <br/>
+                        <div>
+                            <a href="/blog/{{_id}}">Read More</a>
+                        </div>
+                        <hr/>
+                    {{/each}}
+                </div>
             </div>
-        </div>
-        
-        <div class="col md4">
-            <div>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eleifend nunc eu dolor scelerisque, eu elementum nisi sodales. Aenean faucibus accumsan ligula, non ornare augue finibus tristique. Nullam pellentesque et orci vitae tempor. Nullam in purus lacinia libero aliquam placerat. Nulla eleifend cursus nunc, id imperdiet justo molestie nec. Morbi
-                </p>
-            </div>
-        </div>
-        
-        <div class="col md4">
-            <div>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eleifend nunc eu dolor scelerisque, eu elementum nisi sodales. Aenean faucibus accumsan ligula, non ornare augue finibus tristique. Nullam pellentesque et orci vitae tempor. Nullam in purus lacinia libero aliquam placerat. Nulla eleifend cursus nunc, id imperdiet justo molestie nec. Morbi
-                </p>
-            </div>
-        </div>
-        
-        <div class="col md4">
-            <div>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eleifend nunc eu dolor scelerisque, eu elementum nisi sodales. Aenean faucibus accumsan ligula, non ornare augue finibus tristique. Nullam pellentesque et orci vitae tempor. Nullam in purus lacinia libero aliquam placerat. Nulla eleifend cursus nunc, id imperdiet justo molestie nec. Morbi
-                </p>
-            </div>
-        </div>
+        </div>                    
+        {{/if}}    
     </div>
 </div>
 

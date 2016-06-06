@@ -4,18 +4,18 @@ $DEBUG: "false";
 $breakpoints: (
     'xs': '',       // Small Mobile Phone in Portrait                                                   {480px and less}
     'ms': 560px,    // Medium Mobile Phone in Portrait                                                  {481px to 560px}
-    'sm': 640px,    // Small/Medium Mobile Phone in Landscape,  Large Mobile Phone in Portrait          {561px to 640px}
-    'md': 768px,    // Large Mobile Phone in Landscape,         Small Tablet in Portrait                {641px to 768px}    eg. Nexus 6p, iPad Mini
-    'lg': 960px,    // Small Tablet in Landscape,               Large Tablet in Portrait                {769px to 960px}    eg. iPad Mini, iPad
+    's': 640px,     // Small/Medium Mobile Phone in Landscape,  Large Mobile Phone in Portrait          {561px to 640px}
+    'm': 768px,     // Large Mobile Phone in Landscape,         Small Tablet in Portrait                {641px to 768px}    eg. Nexus 6p, iPad Mini
+    'l': 960px,     // Small Tablet in Landscape,               Large Tablet in Portrait                {769px to 960px}    eg. iPad Mini, iPad
     'xl': 1200px,   // Large Tablet in Landscape,               Desktop Computers                       {961px and more}    eg. iPad, Mac, PC
 );
 
 $max-breakpoints: (
     'xs': '',                   // Small Mobile Phone in Portrait                                                   {480px and less}
     'ms': (min-width: 560px),   // Medium Mobile Phone in Portrait                                                  {481px to 560px}
-    'sm': (min-width: 640px),   // Small/Medium Mobile Phone in Landscape,  Large Mobile Phone in Portrait          {561px to 640px}
-    'md': (min-width: 768px),   // Large Mobile Phone in Landscape,         Small Tablet in Portrait                {641px to 768px}    eg. Nexus 6p, iPad Mini
-    'lg': (min-width: 960px),   // Small Tablet in Landscape,               Large Tablet in Portrait                {769px to 960px}    eg. iPad Mini, iPad
+    's':  (min-width: 640px),   // Small/Medium Mobile Phone in Landscape,  Large Mobile Phone in Portrait          {561px to 640px}
+    'm':  (min-width: 768px),   // Large Mobile Phone in Landscape,         Small Tablet in Portrait                {641px to 768px}    eg. Nexus 6p, iPad Mini
+    'l':  (min-width: 960px),   // Small Tablet in Landscape,               Large Tablet in Portrait                {769px to 960px}    eg. iPad Mini, iPad
     'xl': (min-width: 1200px),  // Large Tablet in Landscape,               Desktop Computers                       {961px and more}    eg. iPad, Mac, PC
 );
 
@@ -97,4 +97,10 @@ $box-shadow:            #333333 3px 3px 2px;
   }
 
   @return $number;
+}
+
+%input-focus {
+    border-color: #969696;
+    box-shadow: #eeeeee 0 0 10px 10px, #dddddd 0 0 8px 6px;
+    outline: none;
 }

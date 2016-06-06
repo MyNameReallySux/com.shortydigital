@@ -15,16 +15,12 @@ var logger          = require('morgan');                // Logger               
 var cookieParser    = require('cookie-parser');         // Parse cookies            |
 var bodyParser      = require('body-parser');           // Parse html               |
 var favicon         = require('serve-favicon');         // Serves favicon           |
-var livereload      = require('livereload');
 
 var helpers = require('./scripts/helpers');
 var utils = require('./scripts/utils');
 var Drivers = require('./scripts/driver');
-var Provider = Drivers.Provider;
 
 var app = express();
-var server = livereload.createServer();
-server.watch(__dirname + "/public");
 
 // main domain <www.shortydigital.com>
 var package = require('./package.json');
@@ -71,7 +67,6 @@ files.forEach(function(file){
     var routeName = path.basename(filePath, ".js")
     var routeName = routeName.toString();
     var routeName = routeName.capitalize();
-    console.log(filePath);
     route = require(filePath);
     route.init(app, {
         "title" : name + " | " + routeName,
@@ -106,11 +101,11 @@ if (app.get('env') === 'development') {
 // production error handler
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
-  res.status(err.status || 500);
-  res.render('error', {
-    message: err.message,
-    status: err.status || 500,
-    error: {}
+    res.status(err.status || 500);
+    res.render('error', {
+        message: err.message,
+        status: err.status || 500,
+        error: err
   });
 });
 

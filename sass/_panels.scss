@@ -9,7 +9,7 @@
 ############################ */
 
 .panel {
-    background: #eeeeee;
+    background: light($grey, $light-5);
     padding: 15px;
     @include border-radius(10px);
     margin-bottom: $spacer-height;

@@ -1,0 +1,72 @@
+// #############################
+//  Data
+//  -   SCSS only
+// #############################
+
+$input-margin: 1.5em auto 0.5em auto;
+$input-padding: 10px;
+$input-border-radius: 5px;
+
+/* ############################
+    Form Styles
+    -   scss/form.scss
+############################ */
+
+%input-border {
+    border: solid 1px #000000;
+    @include border-radius($input-border-radius);
+    @include transition('all 0.3s ease 0s');
+    
+    &:focus,
+    &.focus {
+        @extend %input-focus;
+    }
+}
+
+%input-dimensions {
+    width: 100%;
+    padding: $input-padding;
+    margin: $input-margin;
+}
+
+.input-field {
+    position: relative;
+    
+    & input[type="text"] {
+        @extend %input-dimensions;
+        @extend %input-border;
+    }
+    
+    & label {
+        display: block;
+        position: absolute;
+        border-bottom: solid 1px #000000;
+        margin: 0 auto;
+    }
+    
+    & textarea {
+        @extend %input-dimensions;
+        @extend %input-border;
+    }
+}
+
+.disabled,
+a.disabled,
+.nav ul > li > a.disabled {
+    color: #cccccc;
+    background: #eeeeee;
+    border-color: #dddddd;
+    
+    &:hover {
+        color: #cccccc;
+        background: #eeeeee;
+        border-color: #cccccc;
+        cursor: default;
+    }
+}
+
+
+
+
+
+

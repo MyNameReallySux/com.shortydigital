@@ -1,0 +1,244 @@
+// #############################
+//  Data
+//  -   SCSS only
+// #############################
+
+$btn-themes: (
+    "flat"
+    "modern"
+    "material"
+);
+
+$btn-sizes: (
+    "x-small":  0.8,
+    "small":    0.9,
+    "large":    1.25,
+    "x-large":  1.5,
+    "huge":     1.75
+);
+
+$btn-padding: 6px 18px;
+$btn-border-radius: 5px;
+$btn-font-size: 12px;
+
+@function strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+  @return $number;
+}
+
+@mixin create-button($padding, $border-radius, $font-size){
+    display: inline-block;
+    font-size: $font-size;
+    padding: $padding;
+    margin: 5px;
+    @include border-radius($border-radius);
+    @include transition(all 0.4s ease 0s);
+}
+
+@mixin create-theme-btn($theme){
+    @if($theme == "flat"){
+        @include flat-btn();
+    } @else if($theme == "modern"){
+        @include modern-btn();
+    }
+}
+
+@function btn-padding($padding, $multiplier: 1){
+    @each $element in $padding {
+        $element: strip-unit($element);
+    }
+    
+    @if length($padding) == 1 {
+        $padding: $padding * $multiplier;
+    }
+    @if length($padding) == 2 {
+        $padding: nth($padding, 1) * $multiplier nth($padding, 2) * $multiplier;
+    }
+    @if length($padding) == 3 {
+        $padding: nth($padding, 1) * $multiplier nth($padding, 2) * $multiplier nth($padding, 3) * $multiplier;
+    }
+    @if length($padding) == 4 {
+        $padding: nth($padding, 1) * $multiplier nth($padding, 2) * $multiplier nth($padding, 3) * $multiplier nth($padding, 4) * $multiplier;
+    }
+    
+    @each $element in $padding {
+        $element: $element + px;
+    }
+    
+    @return $padding;
+}
+
+@mixin color-hover($color: $white, $background: inherit, $border: inherit){
+    &:hover {
+        color: $color;
+        background: $background;
+        border-color: $border
+    }
+}
+
+// #############################
+//  Default Theme
+// #############################
+
+@mixin default-btn() {
+    .btn,
+    a.btn {
+        border: solid 1px black;
+        color: white;
+        background: $grey;
+        @include border-radius($btn-border-radius);
+        @include transition('all 0s ease 0s');
+
+        &:hover {
+            color: white;
+            background: black;
+        }
+        &:focus,
+        &.focus {
+            box-shadow: $focus 0 0 2px 2px;
+            outline: none;
+        }
+    }   
+}
+
+// #############################
+//  Flat Theme
+// #############################
+
+@mixin flat-btn() {
+    &.btn, & .btn {
+        color: $white;
+    
+        border: solid 3px $white;
+        @include border-radius(0);
+        @include transition('all 0.4s ease 0s');
+
+        &:hover {
+            color: $black;
+            background: $white;
+        }
+
+        @each $color, $hex in $theme-colors {
+            &.#{$color}:hover {
+                color: $hex !important;
+                background: $white !important;
+            }
+
+            & .#{$color}:hover {
+                color: $hex !important;
+                background: $white !important;
+            }  
+        }
+    }
+    
+    @each $color, $hex in $theme-colors {
+        &.#{$color} .btn:hover,
+        & .#{$color} .btn:hover {
+            color: $hex;
+            background: $white !important;
+        }
+    }
+}
+
+// #############################
+//  Modern Theme
+// #############################
+
+$modern-btn-thickness: 5px;
+
+@mixin modern-btn() {
+    &.btn, & .btn {
+        position: relative;
+        top: 0px;
+
+        color: darken($grey, $dark-3);
+        background: $grey;
+
+        text-transform: uppercase;
+
+        border: none;
+        @include border-radius($modern-btn-thickness);
+        box-shadow: 0 $modern-btn-thickness;
+
+        @include transition('all 0.1s ease 0s');
+
+        &:hover {
+            $shadow: $modern-btn-thickness * 0.5;
+            box-shadow: 0 $shadow;
+            top: $shadow;
+        }
+
+        &:active,
+        &:focus {
+            box-shadow: 0 0 darken($grey, $dark-3);
+            top: $modern-btn-thickness;
+        }
+
+        @each $size, $multiplier in $btn-sizes {
+            &.#{$size}:hover {
+                $shadow: $modern-btn-thickness * $multiplier * 0.5;
+                box-shadow: 0 $shadow;
+                top: $shadow;
+            }
+
+            &.#{$size} {
+                $shadow: 5 * $multiplier + px;
+                box-shadow: 0 $shadow;  
+
+                &:active,
+                &:focus {
+                    $shadow: $modern-btn-thickness * $multiplier;
+                    box-shadow: 0 0;
+                    top: $shadow;
+                }    
+            }
+        }
+
+        @each $color, $hex in $theme-colors {
+            &.#{$color}{
+                background: $hex;
+                color: darken($hex, $dark-4);
+            }
+        }
+    }
+}
+
+// #############################
+//  End Themes
+// ############################# 
+
+/* ############################
+    Button Styles
+    -   scss/_buttons.scss
+############################ */
+
+.btn {
+    @include create-button($btn-padding, $btn-border-radius, $btn-font-size);
+    @include default-btn;
+    @each $size, $multiplier in $btn-sizes {
+        &.#{$size}{
+            $padding: btn-padding($btn-padding, $multiplier);
+            $border-radius: $btn-border-radius * $multiplier;
+            $text-size: $btn-font-size * $multiplier;
+            @include create-button($padding, $border-radius, $text-size);
+        }
+    }
+}
+
+@each $theme, $mixin in $btn-themes {
+    .#{$theme} {
+        @include create-theme-btn($theme);
+    }
+
+//    @each $size, $multiplier in $btn-sizes {
+//        .#{$theme} .btn.#{$size},
+//        .#{$theme}.btn.#{$size} {
+//            $padding: btn-padding($btn-padding, $multiplier);
+//            $border-radius: $btn-border-radius * $multiplier;
+//            $text-size: $btn-font-size * $multiplier;
+//            @include create-button($padding, $border-radius, $text-size);
+//        }
+//    }
+}

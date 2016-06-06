@@ -16,16 +16,16 @@ idCounter = {
 
 Provider = function(type, params){
     if(isSet(type)){
-        var type = this.type = type.capitalize().singularize();
+        var type = this.type = type.singularize().capitalize();
         var findAllfcn = 'findAll'+type.pluralize();
         var findByIdfcn = 'find'+type+'ById';
         var self = this;
           
         this[findAllfcn] = function(callback){
-            this.findAll(this.type, callback);
+            this.findAll(type.toLowerCase(), callback);
         }
         this[findByIdfcn] = function(id, callback){
-            this.findById(type, id, callback);
+            this.findById(type.toLowerCase(), id, callback);
     	}
         
         var self = this;
@@ -59,19 +59,25 @@ Provider.prototype.findAll = function(type, callback) {
     /* ################################
         Test if able to connect to DB
         Retrieve & Process Data
-    ################################ */
+    ################################ */    
     var collection;
-    if(type.isEquivalent('post'))           collection = this.dummyData.posts;
-    else if(type.isEquivalent('author'))    collection = this.dummyData.authors;
+    if(type.isEquivalentTo('post'))           collection = this.dummyData.posts;
+    else if(type.isEquivalentTo('author'))    collection = this.dummyData.authors;
 
-    if(collection)  
+    var index = 0;
+    collection.forEach(function(record){
+        record._index = index++;
+    })
+    
+    if(collection) {
         callback(null, collection);
-    else
+    } else {
         callback({
             msg: "A connection to the Database could not be made.",
             caller: this.name,
             args: arguments
-    });
+        });
+    }
 }.bind(Provider.prototype);
 
 /*
@@ -104,8 +110,8 @@ Provider.prototype.findAllByParam = function(type, key, value, callback) {
         Test if able to connect to DB
     ################################ */
     var collection;
-    if(type.isEquivalent('post'))           collection = this.dummyData.posts;
-    else if(type.isEquivalent('author'))    collection = this.dummyData.authors;
+    if(type.isEquivalentTo('post'))           collection = this.dummyData.posts;
+    else if(type.isEquivalentTo('author'))    collection = this.dummyData.authors;
     
     if(!collection)  
         callback({
@@ -117,7 +123,10 @@ Provider.prototype.findAllByParam = function(type, key, value, callback) {
         Retrieve & Process data
     ################################ */
     var data = [];
+    var index = 0;
     collection.forEach(function(record){
+        record._index = index++;
+        
         if(isSet(record[key.pluralize()])){
             var subrecord = record[key.pluralize()];
             if(isArray(subrecord)){
@@ -177,8 +186,8 @@ Provider.prototype.findById = function(type, id, callback) {
         Test if able to connect to DB
     ################################ */
     var collection;
-    if(type.isEquivalent('post'))           collection = this.dummyData.posts;
-    else if(type.isEquivalent('author'))    collection = this.dummyData.authors;
+    if(type.isEquivalentTo('post'))           collection = this.dummyData.posts;
+    else if(type.isEquivalentTo('author'))    collection = this.dummyData.authors;
     
     if(!collection)  
         callback({
@@ -222,10 +231,8 @@ Provider.prototype.save = function(type, data, callback) {
     if(typeof(data.length) == "undefined") data = [data];
     
     var collection;
-    if(type.isEquivalent('post'))           collection = this.dummyData.posts;
-    else if(type.isEquivalent('author'))    collection = this.dummyData.authors;
-    console.dir("Is It An Author: " + type.isEquivalent('author'), logopts);
-    console.dir("Is It A Post: " + type.isEquivalent('post'), logopts);
+    if(type.isEquivalentTo('post'))           collection = this.dummyData.posts;
+    else if(type.isEquivalentTo('author'))    collection = this.dummyData.authors;
 
     data.forEach(function(record){
         record.created_at = new Date();
@@ -235,7 +242,6 @@ Provider.prototype.save = function(type, data, callback) {
         record.comments.forEach(function(comment){
             comment.created_at = new Date();
         });
-        console.dir(record, logopts);
         collection[record._id - 1] = record;
     });
     /*
@@ -261,9 +267,6 @@ Provider.prototype.save = function(type, data, callback) {
 
 var Posts = new Provider();
 var Authors = new Provider();
-
-console.dir(Posts, logopts);
-console.dir(Authors, logopts);
 
 /*
 provider.findById('post', 1, function(error, data){

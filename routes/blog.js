@@ -18,15 +18,16 @@ this.init = function(app, args){
     ######################### */
     
     app.get('/blog', function(req, res, next) {
-        console.log("Loading /" + args.name);       
+        console.log("Loading /" + args.name);  
         Posts.findAllPosts(function(error, posts){
             posts.forEach(function(post){
-                post.snippet = post.body.shortenBy ('words', 50);
+                post.snippet = post.body.shortenBy('words', 50);
             });
             res.render('blog', {
                 title: args.title,
-                posts: posts,
-                admin: args.admin
+                admin: args.admin,
+                posts: posts
+                
             });
         });
     });
@@ -34,7 +35,7 @@ this.init = function(app, args){
     app.get('/blog/new', function(req, res, next) {
         console.log("Loading /" + args.name + "/new");
         res.render('blog-post-edit', {
-            title: args.title + 'New Post',
+            title: args.title + ' > New Post',
             admin: args.admin
         });
     }); 
@@ -45,8 +46,9 @@ this.init = function(app, args){
         Posts.findPostById(req.params.id, function(error, post){
             res.render('blog-post', {
                 title: args.title,
-                post: post,
-                admin: args.admin
+                admin: args.admin,
+                post: post
+                
             });
         });
     });
@@ -56,9 +58,9 @@ this.init = function(app, args){
         console.log("Loading /" + args.name + "/" + req.params.id  + "/edit");
         Posts.findPostById(req.params.id, function(error, post){
             res.render('blog-post-edit', {
-                title: args.title,
-                post: post,
-                admin: args.admin
+                title: args.title + " > Edit Post",
+                admin: args.admin,
+                post: post
             });
         });
     });
@@ -69,8 +71,8 @@ this.init = function(app, args){
         Posts.findPostById(req.params.id, function(error, post){
             res.render('blog-post-delete', {
                 title: args.title,
-                post: post,
-                admin: args.admin
+                admin: args.admin,
+                post: post
             });
         });
     });
@@ -81,8 +83,8 @@ this.init = function(app, args){
         Posts.findAllPostsByTag(req.params.tag, function(error, posts){
             res.render('blog', {
                 title: args.title,
-                posts: posts,
-                admin: args.admin
+                admin: args.admin,
+                posts: posts
             });
         });
     });
@@ -94,7 +96,6 @@ this.init = function(app, args){
     ######################### */
     
     app.post('/blog/new', function(req, res){
-        console.log("POSTING NEW POST");
         Posts.save('post', {
             title:  req.body.title,
             author: req.body.author,
