@@ -1,0 +1,32 @@
+@if($default-btn-theme != ""){
+        @include make-default-btn();    
+} @else {
+    .btn {
+        @include make-btn();
+        @extend %default-btn-theme;
+    }
+    
+}
+
+@each $theme, $props in $btn-themes {
+    @if($theme != $default-btn-theme) {
+        $use: map-get($props, "_use");
+        @if($use == 'true') {
+            @include make-theme-btn($theme);
+        }   
+    }   
+}
+
+.btn {
+    @include make-btn-sizes(
+        map-get($default-btn, "font-size"),
+        map-get($default-btn, "padding"));
+}
+
+@each $theme in $btn-themes {
+    @each $size, $multiplier in $btn-sizes {
+        .btn.#{$theme}.#{$size}, .#{$theme} .btn.#{$size}{
+            
+        }
+    }
+}

@@ -1,0 +1,30 @@
+// #############################
+//  Theme Map
+// #############################
+
+$btn-themes: (
+    "default":  (
+        "_use":     "false",
+        "style":    $default-btn
+    ),
+
+    "arcade":  (
+        "_use":     "true",
+        "style":    $arcade-btn
+    ),
+    
+    "flat":  (
+        "_use":     "true",
+        "style":    $flat-btn
+    ),
+    
+    "simple":  (
+        "_use":     "false",
+        "style":    $arcade-btn
+    ),
+    
+    "modern":  (
+        "_use":     "false",
+        "style":    $modern-btn
+    ),
+);

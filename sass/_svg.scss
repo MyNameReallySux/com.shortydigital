@@ -1,0 +1,21 @@
+/* ############################
+    SVG Styles
+    -   svg.scss
+############################ */
+
+.group {
+    svg {
+        display: inline-block;
+    }
+}
+
+@each $name, $hex in $shades {
+    svg.#{$name} * {
+        fill: $hex;
+    }
+    
+    .#{$name} svg * {
+        fill: $hex;
+    }
+}
+

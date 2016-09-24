@@ -70,7 +70,7 @@ files.forEach(function(file){
     route = require(filePath);
     route.init(app, {
         "title" : name + " | " + routeName,
-        "name"  : routeName,
+        "page"  : routeName,
         "site"  : name
     });
 });

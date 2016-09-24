@@ -1,0 +1,90 @@
+// #############################
+//  App Mixins
+//  -   SCSS only
+// #############################
+
+@mixin triangle($direction: "up", $color: $black, $border-size: 8px){
+    @if(direction == "up")     { @include triangle-up($color, $border-size)    };
+    @if(direction == "right")  { @include triangle-right($color, $border-size) };
+    @if(direction == "down")   { @include triangle-down($color, $border-size)  };
+    @if(direction == "left")   { @include triangle-left($color, $border-size)  };
+}
+
+@mixin triangle-up($color: $black, $border-size: 8px){
+    border-bottom:  solid $border-size $color;
+    border-left:    solid $border-size transparent;
+    border-right:   solid $border-size transparent;
+}
+
+@mixin triangle-right($color: $black, $border-size: 8px){
+    border-left:     solid $border-size $color;
+    border-top:      solid $border-size transparent;
+    border-bottom:   solid $border-size transparent;
+}
+
+@mixin triangle-down($color: $black, $border-size: 8px){
+    border-top:     solid $border-size $color;
+    border-left:    solid $border-size transparent;
+    border-right:   solid $border-size transparent;
+}
+
+@mixin triangle-left($color: $black, $border-size: 8px){
+    border-right:    solid $border-size $color;
+    border-top:      solid $border-size transparent;
+    border-bottom:   solid $border-size transparent;
+}
+
+@mixin vertical-align($position: relative){
+    position: $position;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%); 
+}
+
+@mixin repeat-rule($width: 95%, $margin-vert: 15px, $margin-side: auto, $include: false){
+    $margin: $margin-vert $margin-side;
+    
+    @if $include == true {
+        &:before {
+            display: block;
+            content: "";
+            width: $width;
+            border-bottom: solid 1px lighten($grey, $light-4);
+            margin: $margin; 
+        }   
+    } @else {
+        & + &:before {
+            display: block;
+            content: "";
+            width: $width;
+            border-bottom: solid 1px lighten($grey, $light-4);
+            margin: $margin; 
+        }   
+    }
+}
+
+// #############################
+//  Compatibility Mixins
+// #############################
+
+@mixin border-radius($value){
+    -webkit-border-radius: $value;
+    -moz-border-radius: $value;
+    border-radius: $value;
+}
+
+@mixin transform($transform){
+    -webkit-transform: $transform;
+	-moz-transform: $transform;
+	-ms-transform: $transform;
+	-o-transform: $transform;
+	transform: $transform;
+}
+
+@mixin transition($value: $default-transition){
+    -webkit-transition: $value;
+    -moz-transition: $value;
+    -o-transition: $value;
+    transition: $value;
+}

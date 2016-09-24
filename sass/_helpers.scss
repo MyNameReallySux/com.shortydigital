@@ -1,0 +1,185 @@
+/* ############################
+    Helper Styles
+    -   scss/helpers.scss
+############################ */
+
+// Space & Position Helpers
+
+.center {
+    margin: 0 auto;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.no-top-pad, .no-vert-pad, .no-pad {
+    padding-top: 0;
+}
+
+.no-bottom-pad, .no-vert-pad, .no-pad {
+    padding-bottom: 0;
+}
+
+.no-left-pad, .no-side-pad, .no-pad {
+    padding-left: 0;
+}
+
+.no-right-pad, .no-side-pad, .no-pad {
+    padding-right: 0;
+}
+
+.no-margin, .row.no-margin {
+    margin: 0;
+}
+
+.cover {
+    height: 100vh;
+    width: 100%;
+}
+
+.valign-top {
+    position: absolute;
+    top: 0;
+    bottom: none;
+}
+
+.valign-middle {
+    position: absolute;
+    top: 50%;
+    bottom: none;
+    @include transform(translateY(-50%));
+
+}
+
+valign-bottom {
+    position: absolute;
+    top: none;
+    bottom: 0;
+}
+
+// Text Helpers
+
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-justify {
+    text-align: justify;
+}
+
+.double-space, .double-space p {
+    line-height: 200%;
+}
+
+.extra-space, .extra-space p {
+    line-height: 166%;
+}
+
+.point-75-space, .point-75-space p {
+    line-height: 175%;
+}
+
+.point-5-space, .point-5-space p {
+    line-height: 150%;
+}
+
+.more-space, .more-space p {
+    line-height: 133%;
+}
+
+.point-25-space, .point-25-space p {
+    line-height: 125%;
+}
+
+.responsive {
+    width: 100%;
+    height: auto;
+}
+
+@-moz-document url-prefix() {  
+    img.responsive {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {    
+     img.responsive {
+        max-width: 100%;
+    }    
+}
+
+.responsive-16x9 {
+    position: relative;
+    padding-bottom: 56.25%; /* 16 by 9 Aspect Ratio; */
+    padding-top: 35px;  /* Youtube Video Fix */
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+
+    iframe {
+        position: absolute;
+        top:0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.circle {
+    @include border-radius(50%);
+}
+
+.bordered {
+    border: solid 3px lighten($grey, $light-2);
+}
+
+.bordered.primary-on-hover:hover {
+    border: solid 3px lighten($primary, $light-3);
+}
+
+.greyscale {
+    filter: $grey;
+    filter: grayscale(100%);
+    -webkit-filter: grayscale(100%);
+    filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'saturate\' values=\'0\'/></filter></svg>#grayscale");
+
+    @include transition();
+    
+    &:hover {
+        filter: none;
+        filter: grayscale(0%);
+        -webkit-filter: grayscale(0%);
+        filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 1 0\'/></filter></svg>#grayscale");
+
+    }
+}
+
+.hover-greyscale:hover {
+    filter: none;
+    filter: grayscale(0%);
+    -webkit-filter: grayscale(0%);
+    filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 1 0\'/></filter></svg>#grayscale");
+    
+    @include transition();
+    
+    &:hover {
+        filter: $grey;
+        filter: grayscale(100%);
+        -webkit-filter: grayscale(100%);
+        filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'saturate\' values=\'0\'/></filter></svg>#grayscale");
+    }
+}

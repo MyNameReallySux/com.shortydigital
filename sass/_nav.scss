@@ -4,10 +4,10 @@
 // #############################
 
 $nav-height: 50px;
-$nav-color: #eeeeee;
+$nav-color: rgba($black, 0.25);
 
 $nav-btn-margin: 5px;
-$nav-btn-padding: 10px 25px;
+$nav-btn-padding: 17.5px 25px;
 $nav-btn-size: $nav-height - $nav-btn-margin * 2;;
 
 /* ############################
@@ -21,62 +21,46 @@ $nav-btn-size: $nav-height - $nav-btn-margin * 2;;
     background: $nav-color;
     line-height: $nav-height;
 
-    & .container {
+    .container {
         padding-top: 0;
         padding-bottom: 0;
     }
     
-    & .menu-btn {
-        display: none;
-        width: $nav-btn-size;
-        height: $nav-btn-size;
-        line-height: $nav-btn-size;
-        margin: $nav-btn-margin;
-        text-align: center;
-        background: $nav-color;
-        border: #dddddd solid 1px;
-        @include border-radius(5px);
-    }
-    
-    & ul {
+    ul {
         display: flex;
         width: 100%;
         justify-content: space-between;
         
-        & > li {
+        > li {
             display: inline-block;
             
-            & > a {
-                text-transform: uppercase;
+            > a {
+                color: $white;
+                font-size: 120%;
+                text-shadow: darken($grey, $dark-5) 1px 1px 2px;
                 font-weight: bold;
                 letter-spacing: 1px;
                 padding: $nav-btn-padding;
-                @include border-radius(5px);
+                @include border-radius(0);
                 @include transition(all 0.5s ease 0s);
-                
-                &:hover {
-                    background: black;
-                    color: white;
-                }
+
             }
-            &:after {
-                
-            }
-            &:last-child:after {
-                
-            }
+            
         }
+        
+        > li:hover a {
+            color: $primary;
+        }
+    }
+    
+    &.overhang {
+        margin-bottom: -$nav-height;
     }
 }
 
-.top-bar {
-    background: #777777;
-    color: white;
-}
-
 .admin {
-    background: black;
-    color: white;
+    background: $black;
+    color: $white;
     height: 20px;
     
     & .button-nav {
@@ -87,7 +71,7 @@ $nav-btn-size: $nav-height - $nav-btn-margin * 2;;
             line-height: 20px;
             font-size: 12px;
             fomt-weight: bold;
-            color: white;
+            color: $white;
             display: flex;
             justify-content: flex-start;
             
@@ -101,7 +85,7 @@ $nav-btn-size: $nav-height - $nav-btn-margin * 2;;
                     @include transition(all 0.5s ease 0s);
 
                     &:hover {
-                        color: #fffb98;
+                        color: $highlight;
                     }
                 }
                 
@@ -145,3 +129,22 @@ $nav-btn-size: $nav-height - $nav-btn-margin * 2;;
         }
     }
 }*/
+
+.brand {
+    font-size: 200%;
+    color: $white;
+    margin: 0;
+    padding: 0;
+}
+
+.menu-btn {
+        display: none;
+        width: $nav-btn-size;
+        height: $nav-btn-size;
+        line-height: $nav-btn-size;
+        margin: $nav-btn-margin;
+        text-align: center;
+        background: $nav-color;
+        border: lighten($grey, $light-3) solid 1px;
+        @include border-radius(5px);
+    }

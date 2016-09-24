@@ -1,0 +1,85 @@
+// #############################
+//  Modern Theme
+// #############################
+
+$arcade-btn-thickness: 5px;
+
+$arcade-btn: (
+    "background":       $grey,
+    "border":           none,
+    "border-radius":    $arcade-btn-thickness,
+    "box-shadow":       0 $arcade-btn-thickness,
+    "color":            darken($grey, $dark-4),
+    "position":         relative,
+    "text-transform":   uppercase,
+    "top":              0px,
+    "transition":       all 0.1s ease 0s,
+    
+    "on-hover": (
+        "background":   $white,
+        "color":        $black
+    )
+);
+
+%arcade-btn {
+    position: map-get($arcade-btn, "position");
+    top: map-get($arcade-btn, "top");
+
+    color: map-get($arcade-btn, "color");
+    background: map-get($arcade-btn, "background");
+
+    text-transform: map-get($arcade-btn, "text-transform");
+
+    border: map-get($arcade-btn, "border");
+    box-shadow: map-get($arcade-btn, "box-shadow") ;
+
+    @include border-radius(map-get($arcade-btn, "border-radius"));
+    @include transition(map-get($arcade-btn, "transition"));
+
+    &:hover {
+        color: map-get($arcade-btn, "color");
+        background: map-get($arcade-btn, "background");
+        
+        $shadow: $arcade-btn-thickness * 0.5;
+        box-shadow: 0 $shadow;
+        top: $shadow;
+    }
+
+    &:active,
+    &:focus {
+        box-shadow: 0 0 darken($grey, $dark-4);
+        top: $arcade-btn-thickness;
+    }
+
+    @each $size, $multiplier in $btn-sizes {
+        &.#{$size}:hover {
+            $shadow: $arcade-btn-thickness * $multiplier * 0.5;
+            box-shadow: 0 $shadow;
+            top: $shadow;
+        }
+
+        &.#{$size} {
+            $shadow: 5 * $multiplier + px;
+            box-shadow: 0 $shadow;  
+
+            &:active,
+            &:focus {
+                $shadow: $arcade-btn-thickness * $multiplier;
+                box-shadow: 0 0;
+                top: $shadow;
+            }    
+        }
+    }
+
+    @each $color, $hex in $theme-colors {
+        &.#{$color}{
+            background: $hex;
+            color: darken($hex, $dark-4);
+        }
+        
+        &.#{$color}:hover{
+            background: $hex;
+            color: darken($hex, $dark-4);
+        }
+    }
+}

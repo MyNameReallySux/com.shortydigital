@@ -54,12 +54,12 @@ $input-border-radius: 5px;
 a.disabled,
 .nav ul > li > a.disabled {
     color: #cccccc;
-    background: #eeeeee;
+    // background: #eeeeee;
     border-color: #dddddd;
     
     &:hover {
         color: #cccccc;
-        background: #eeeeee;
+        // background: #eeeeee;
         border-color: #cccccc;
         cursor: default;
     }

@@ -1,0 +1,44 @@
+// #############################
+//  Simple Theme
+// #############################
+
+$simple-btn: (
+    "background":       $grey,
+    "border":           none,
+    "border-radius":    0,
+    "color":            $white,
+    "font-size":        0.75em,
+    "margin":           inherit,
+    "padding":          10px 25px,
+    
+    "on-hover": (
+        "background":   $black,
+        "color":        $white
+    ),
+    "on-focus": (
+        "box-shadow":   $focus-color 0 0 2px 2px,
+        "outline":      none
+    )
+);
+
+%simple-btn {
+    background:     map-get($simple-btn, "background");
+    border:         map-get($simple-btn, "border");
+    border-radius:  map-get($simple-btn, "border-radius");
+    color:          map-get($simple-btn, "color");
+    font-size:      map-get($simple-btn, "font-size");
+    padding:        map-get($simple-btn, "padding");
+
+    &:hover {
+        $on-hover:      map-get($simple-btn, "on-hover");
+        
+        color:          map-get($on-hover, "color");
+        background:     map-get($on-hover, "background");
+    }
+    &:focus,
+    &.focus {
+        $on-focus:      map-get($simple-btn, "on-focus");
+
+        box-shadow:     map-get($on-focus, "box-shadow");
+    }
+}

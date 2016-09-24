@@ -1,0 +1,52 @@
+// #############################
+//  Modern Theme
+// #############################
+
+$modern-btn: (
+    "background":       $grey,
+    "border":           none,
+    "border-radius":    0,
+    "color":            $white,    
+    "font-size":        0.75em,
+    "margin":           inherit,    
+    "padding":          10px 25px,
+    
+    "on-hover":         (
+        "color":        $white,
+        "background":   lighten($grey, $light-3)
+    ),
+    "on-focus":         (
+        "box-shadow":   $focus-color 0 0 2px 2px,
+        "outline":      none,       
+    )
+);
+
+%modern-btn {
+    background:     map-get($modern-btn, "background");
+    border:         map-get($modern-btn, "border");
+    border-radius:  map-get($modern-btn, "border-radius");
+    color:          map-get($modern-btn, "color");
+    font-size:      map-get($modern-btn, "font-size");
+    padding:        map-get($modern-btn, "padding");
+
+    &:hover {
+        $on-hover:      map-get($modern-btn, "on-hover");
+        
+        color:          map-get($on-hover, "color");
+        background:     map-get($on-hover, "background");
+    }
+    &:focus,
+    &.focus {
+        $on-focus:      map-get($modern-btn, "on-focus");
+
+        box-shadow:     map-get($on-focus, "box-shadow");
+    }
+    
+    @each $color, $hex in $theme-colors {
+        &.#{$color}:hover,
+        .modern .btn.#{$color}:hover {
+            color: $white;
+            background: lighten($hex, $light-3) !important;
+        }
+    }
+}

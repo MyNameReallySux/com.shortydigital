@@ -1,0 +1,12 @@
+// #############################
+//  App Config
+//  -   SCSS only
+// #############################
+
+$DEBUG: "false";
+
+$default-shadow-color:  darken($grey, $dark-4);
+$default-box-shadow:    $default-shadow-color 3px 3px 2px;
+$default-transition:    all 0.4s ease 0s;
+
+$default-btn-color:     $black;

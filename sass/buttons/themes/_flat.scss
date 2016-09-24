@@ -1,0 +1,49 @@
+// #############################
+//  Flat Theme
+// #############################
+
+$flat-btn: (
+    "background":       $grey,
+    "border":           solid 3px $white,
+    "border-radius":    0,
+    "color":            $white,
+    "transition":       all 0.4s ease 0s,
+    
+    "on-hover": (
+        "background":   $white,
+        "color":        $black
+    )
+);
+
+%flat-btn {
+    color: $white;
+
+    border: solid 3px $white;
+    @include border-radius(0);
+    @include transition(map-get($flat-btn, "transition"));
+
+    &:hover {
+        color: $black;
+        background: $white;
+    }
+
+    @each $color, $hex in $theme-colors {
+        &.#{$color}:hover {
+            color: $hex !important;
+            background: $white !important;
+        }
+
+        & .#{$color}:hover {
+            color: $hex !important;
+            background: $white !important;
+        }  
+    }
+    
+    @each $color, $hex in $theme-colors {
+        &.#{$color}:hover,
+        .flat .#{$color}.btn:hover {
+            color: $hex;
+            background: $white !important;
+        }
+    }
+}

@@ -1,0 +1,6 @@
+<svg id="svg" class="info" height="25px" width="50px" x="0" y="0">
+    <defs>
+        <link href="/css/app.css" type="text/css" rel="stylesheet" xmlns="http://www.w3.org/1999/xhtml"/>
+    </defs>
+    <polygon points="0,25 25,0 50,25"></polygon>	    
+</svg>

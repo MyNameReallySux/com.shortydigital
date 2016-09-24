@@ -1,0 +1,37 @@
+// #############################
+//  App Functions
+//  -   SCSS only
+// #############################
+
+@function strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+   @return $number / ($number * 0 + 1);
+  }
+
+  @return $number;
+}
+
+@function mul-property($property, $multiplier: 1){
+    @each $element in $property {
+        $element: strip-unit($element);
+    }
+    
+    @if length($property) == 1 {
+        $property: $property * $multiplier;
+    }
+    @if length($property) == 2 {
+        $property: nth($property, 1) * $multiplier nth($property, 2) * $multiplier;
+    }
+    @if length($property) == 3 {
+        $property: nth($property, 1) * $multiplier nth($property, 2) * $multiplier nth($property, 3) * $multiplier;
+    }
+    @if length($property) == 4 {
+        $property: nth($property, 1) * $multiplier nth($property, 2) * $multiplier nth($property, 3) * $multiplier nth($property, 4) * $multiplier;
+    }
+    
+    @each $element in $property {
+        $element: $element + px;
+    }
+    
+    @return $property;
+}

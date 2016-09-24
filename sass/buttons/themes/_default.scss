@@ -1,0 +1,59 @@
+// #############################
+//  Default Theme
+// #############################
+
+$default-btn-padding: 6px 18px;
+$default-btn-border: solid 1px $black;
+$default-btn-border-radius: 5px;
+
+$default-btn-font-size: 0.75em;
+
+$default-btn-color: $white;     
+$default-btn-background: $grey;
+
+$default-btn-hover-color: $white;     
+$default-btn-hover-background: $black;
+
+$default-btn-focus-shadow: $focus-color 0 0 2px 2px;
+$default-btn-focus-outline: none;
+
+$default-btn: (
+    "background":       $default-btn-background,
+    "border":           $default-btn-border,
+    "border-radius":    $default-btn-border-radius,
+    "color":            $default-btn-color,
+    "font-size":        $default-btn-font-size,
+    "padding":          $default-btn-padding,
+    
+    "on-hover": (
+        "background":   $default-btn-hover-background,
+        "color":        $default-btn-hover-color
+    ),
+    "on-focus": (
+        "box-shadow":   $default-btn-focus-shadow,
+        "outline":      $default-btn-focus-outline
+    )
+);
+
+%default-btn {
+    border:     map-get($default-btn, "border");
+    color:      map-get($default-btn, "color");
+    background: map-get($default-btn, "background");
+
+    @include border-radius(map-get($default-btn, "border-radius"));
+    @include transition('all 0s ease 0s');
+
+    &:hover {
+        $hover: map-get($default-btn, "on-hover");
+
+        color: map-get($hover, "color");
+        background: map-get($hover, "background");
+    }
+    &:focus,
+    &.focus {
+        $focus: map-get($default-btn, "on-focus");
+
+        box-shadow: map-get($focus, "box-shadow");
+        outline: map-get($focus, "outline");
+    }   
+}

@@ -1,0 +1,71 @@
+/* ############################
+    Color Styles
+    -   scss/_colors.scss
+############################ */
+
+// Make Basic Color Classes
+// .black { background-color: $black }
+@each $name, $hex in $shades {
+    .#{$name}:not(svg) {
+        background-color: $hex;
+    }
+    .#{$name}-text {
+        color: $hex;
+    }  
+}
+  
+// Make Shaded Color Classes
+// .red.light-3 { background-color: lighten($red, 3); }
+
+@each $name, $hex in $colors {
+    @each $shade, $percent in $brightness {
+        @if $shade == "base" {
+            .#{$name} {
+                background-color: $hex;// !important;
+            }    
+            .#{$name}-text {
+                color: $hex;// !important;
+            }  
+        } @else {
+            @if str-index($shade, "dark") != null {
+                .#{$name}.#{$shade} {
+                    background-color: darken($hex, $percent);// !important;
+                }    
+                .#{$name}-text.#{$shade}-text {
+                    color: darken($hex, $percent);// !important;
+                    
+                    &.nav ul li a {
+                         color: darken($hex, $percent);// !important;
+                    }
+                }  
+            } @else if str-index($shade, "light") != null {       
+                .#{$name}.#{$shade} {
+                    background-color: lighten($hex, $percent);// !important;
+                }    
+                .#{$name}-text.#{$shade}-text {
+                    color: lighten($hex, $percent);// !important;
+                    
+                    &.nav ul li a {
+                         color: lighten($hex, $percent);// !important;
+                    }
+                }  
+            }
+        }   
+    }  
+}
+
+// Make Theme Color Classes
+// .crimson { background-color: $crimson }
+
+@each $name, $hex in $theme-colors {
+    .#{$name} {
+        background-color: $hex;
+    }    
+    .#{$name}-text {
+        color: $hex;
+        
+        &.nav ul li a {
+             color: $hex;
+        }
+    }  
+}

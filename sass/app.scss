@@ -3,74 +3,33 @@
 //  -   SCSS only
 // #############################
 
-// #############################
-// App Config - this is where most of your magic will happen
-// #############################
-@import "config";  // Editing the config file sets the theme for the project
-
-// #############################
-// Import core Sass libraries
-// #############################
-@import "lib/bourbon/bourbon";
-
-// #############################
-// Standard CSS reset stuff here
-// #############################
-@import "reset";
-
-// #############################
-// Base CSS files
-// #############################
-@import "typography";
-@import "colors";
-@import "columns";
-@import "nav";
-@import "panels";
-@import "forms";
-@import "chips";
-@import "buttons";
-
-
-// #############################
-// UI Patterns and Modules
-// State is addressed within the component code itself
-// #############################
-
-// @import "ui_patterns/manifest";
-// @import "modules/manifest";
-
-// #############################
-// Vendor specific styles / modules
-// #############################
-// @import "vendors/manifest";
-
-// #############################
-// Layouts
-// #############################
-// @import "layouts/manifest";
+@import "manifest";
 
 /* ############################
     Application Styles
     -   scss/app.scss
 ############################ */
 
-h1, h2, h3, h4, h5, h6 {
-  margin: 5px 0;
-  padding: 0 0 5px 0; 
+/* ############################
+    Nav Styles
+############################ */
+.brand {
+    font-family: 'Roboto', sans-serif;
+    font-size: 150%;
+    text-align: left;
+    letter-spacing: 0.1em;
+    @include transition();
+    
+    span {
+        font-family: 'Inconsolata', monospace;
+    }
 }
 
-h1 + div,
-h2 + div,
-h3 + div,
-h4 + div,
-h5 + div,
-h6 + div {
-  margin-top: 5px;
-}
-
-body {
-    -webkit-box-sizing:border-box; 
-    -moz-box-sizing:border-box; 
-    box-sizing:border-box;
+/* ############################
+    Banner Styles
+############################ */
+#city-banner {
+    background-image: url(/images/banners/city.jpg);
+    background-size: cover;
 }
 
