@@ -1,0 +1,132 @@
+// ############################
+//  Images
+// ############################
+
+img {
+    vertical-align: bottom;
+}
+
+.responsive {
+    width: 100%;
+    height: auto;
+}
+
+@-moz-document url-prefix() {  
+    img.responsive {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {    
+     img.responsive {
+        max-width: 100%;
+    }    
+}
+
+.scale-on-hover {
+     @include transition(transform 0.2s ease);
+        
+    &:hover {
+        @include transform(scale(1.1));
+    }
+}
+
+.overlay {
+    position: relative; 
+    
+    .overlay-content {
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: $grey;
+        @include hide(100%);
+        @include transition();
+    }
+    
+    &:hover .overlay-content {
+        @include show(100%);
+    }
+}
+
+%hidden-overflow {
+    overflow: hidden;
+}
+
+.circle {
+    @include border-radius(50%);
+    @extend %hidden-overflow;
+}
+
+.rounded {
+    @include border-radius(25px);
+    @extend %hidden-overflow;
+}
+
+.line-border {
+    box-shadow: $black 0 0 0 1px,
+        $black 2px 2px 2px;
+    @extend %hidden-overflow;
+}
+
+.bordered {
+    border: solid 5px lighten($grey, $light-2);
+    @extend %hidden-overflow;
+}
+
+.bordered.primary-on-hover:hover {
+    border: solid 5px lighten($primary, $light-3);
+}
+
+.greyscale {
+    filter: $grey;
+    filter: grayscale(100%);
+    -webkit-filter: grayscale(100%);
+    filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'saturate\' values=\'0\'/></filter></svg>#grayscale");
+
+    @include transition();
+    
+    &:hover {
+        filter: none;
+        filter: grayscale(0%);
+        -webkit-filter: grayscale(0%);
+        filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 1 0\'/></filter></svg>#grayscale");
+
+    }
+}
+
+.hover-greyscale:hover {
+    filter: none;
+    filter: grayscale(0%);
+    -webkit-filter: grayscale(0%);
+    filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 1 0\'/></filter></svg>#grayscale");
+    
+    @include transition();
+    
+    &:hover {
+        filter: $grey;
+        filter: grayscale(100%);
+        -webkit-filter: grayscale(100%);
+        filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'saturate\' values=\'0\'/></filter></svg>#grayscale");
+    }
+}
+
+.responsive-16x9 {
+    position: relative;
+    padding-bottom: 56.25%; /* 16 by 9 Aspect Ratio; */
+    padding-top: 35px;  /* Youtube Video Fix */
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+
+    iframe {
+        position: absolute;
+        top:0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+}

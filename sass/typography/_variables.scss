@@ -1,0 +1,26 @@
+// #############################
+//  Font Settings
+// #############################
+
+$font:              'Roboto Condensed', sans-serif;
+$font-size:         16px;
+$text-color:        $black;
+
+$heading-font:      'Inconsolata', monospace;
+
+$fa-font-path:      "../fonts/font-awesome/";
+
+// #############################
+//  Blockquote Settings
+// #############################
+
+$blockquote-fancy:  true;
+$blockquote-font:   'Georgia', serif;
+
+// #############################
+//  Link Colors
+// #############################
+
+$link-color:                    $primary;
+$link-hover-color:              lighten($primary, $light-3);
+$link-focus-color:              $secondary;

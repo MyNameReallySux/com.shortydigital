@@ -1,27 +1,30 @@
-/* ############################
-    Typography Styles
-    -   scss/_reset.scss
-############################ */
-
 a {
     text-decoration: none;
+    color: $link-color;
+    
+    &:hover {
+        color: $link-hover-color;
+    }
+    
+    &:focus, &.focus,
+    &:active, &.active {
+        color: $link-focus-color;
+    }
 }
 
 body {
-    font-family: 'Roboto Condensed', sans-serif;
+    font-family: $font;
+    color: $text-color;
+    
+    -webkit-box-sizing: border-box; 
+    -moz-box-sizing: border-box; 
+    box-sizing: border-box;
 }
-
 h1, h2, h3, h4, h5, h6 {
     font-weight: bold;
     font-family: 'Inconsolata', monospace;
     margin: 5px 0;
     padding: 0 0 5px 0;
-}
-
-body {
-    -webkit-box-sizing: border-box; 
-    -moz-box-sizing: border-box; 
-    box-sizing: border-box;
 }
 
 h1 {
@@ -51,7 +54,7 @@ h6 {
 hr {
     border-style: solid;
     border-width: 0 0 1px 0;
-    border-color: #eeeeee;
+    border-color: $lightgrey;
 }
 
 p {

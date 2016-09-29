@@ -1,7 +1,18 @@
 // #############################
 //  App Mixins
-//  -   SCSS only
 // #############################
+
+@mixin show($height: auto){
+    height: $height;
+    visibility: visible;
+    opacity: 1;
+}
+
+@mixin hide($height: 0){
+    height: $height;
+    visibility: hidden;
+    opacity: 0;
+}
 
 @mixin triangle($direction: "up", $color: $black, $border-size: 8px){
     @if(direction == "up")     { @include triangle-up($color, $border-size)    };

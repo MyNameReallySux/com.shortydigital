@@ -1,0 +1,21 @@
+// #############################
+//  Typography Mixins
+// #############################
+
+@mixin normalize-quote(){
+    quotes: "\201C""\201D""\2018""\2019";
+    
+    &:before, &:after {
+        font-family: $blockquote-font; 
+        display: inline;
+        line-height: inherit;
+    }
+    
+    &:before {
+        content: open-quote;
+    }
+
+    &:after {
+        content: close-quote;
+    }
+}

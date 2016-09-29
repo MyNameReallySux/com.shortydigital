@@ -1,0 +1,321 @@
+// #############################
+//  Debug Styles
+// #############################
+
+$debug-bar-size: 22px;
+
+@mixin generate-debug-class($class, $padding: 20px, $border: solid 1px black, $z-index: -2){
+    padding-top: $padding;
+    position: relative;
+
+    border: $border;
+
+    &:before {
+        content: "";
+        border: dotted 1px #888888;
+        background-color: rgba(255, 255, 255, 0);
+        z-index: $z-index;
+        @extend %overlay;
+    }
+
+    &:after {
+        content: "";
+        max-height: $debug-bar-size;
+        z-index: $z-index + 1;
+        @extend %debug-after;
+        @extend %overlay;
+
+    }
+
+    &:hover:before {
+        content: "";
+        border-style: solid;
+        border-top-width: $debug-bar-size;
+    }
+
+    &:hover:after {
+        content: $class;
+        top: 0;
+        left: 5px;
+        margin: 0;
+    }   
+}
+
+@mixin generate-color-overlay($selector: 'div'){
+    & > #{$selector}:nth-child(6n+1){
+        &:hover:before {
+            background: rgba(255, 0, 0, 0.5);
+            border-color: red;
+        }   
+        &:hover:after {}
+    }
+    & > #{$selector}:nth-child(6n+2){
+        &:hover:before {
+            background: rgba(0, 128, 0, 0.5);
+            border-color: green;
+        }   
+        &:hover:after {}
+    }
+    & > #{$selector}:nth-child(6n+3){
+        &:hover:before {
+            background: rgba(0, 0, 255, 0.5);
+            border-color: blue;
+        }   
+        &:hover:after {}
+    }
+    & > #{$selector}:nth-child(6n+4){
+        &:hover:before {
+            background: rgba(0, 128, 128, 0.5);
+            border-color: teal;
+        }   
+        &:hover:after {}
+    }
+    & > #{$selector}:nth-child(6n+5){
+        &:hover:before {
+            background: rgba(255, 255, 0, 0.5);
+            border-color: yellow;
+        }   
+        &:hover:after {
+            color: black;
+        }
+    }
+    
+    & > #{$selector}:nth-child(6n+6){
+        &:hover:before {
+            background: rgba(128, 0, 128, 0.5);
+            border-color: purple;
+        }   
+        &:hover:after {
+            color: black;
+        }
+    }
+}
+
+@mixin generate-debug-scaffolding($z-index: -2) {
+    .container {
+        @include generate-debug-class('container', $z-index: $z-index);
+        
+        &:hover:before {
+            background: rgba(0, 128, 128, 0.5);
+            border-color: teal;
+        }
+    }
+    
+    .row {
+        @include generate-color-overlay('.col');
+        
+        & .col {
+            @include generate-debug-class('col', $border: 1px dotted, $z-index: $z-index);
+
+            & div {
+                &:not(.col):not(.icon-circle) {
+                    @include generate-debug-class('div', $padding: 20px, $border: 1px dotted, $z-index: $z-index);
+
+                    &:hover:before {
+                        background: rgba(0, 128, 0, 0.5);
+                        border-color: green;
+                    }
+                }
+            }
+        }
+        
+
+    }
+    
+    
+    div {
+        & p {
+            @include generate-debug-class('p', $border: 1px dotted, $z-index: $z-index)
+        }
+        
+        @include generate-color-overlay('p');
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        position: relative;
+
+        &:before {
+            content: "";
+            border: dotted 1px #888888;
+            background-color: rgba(255, 255, 255, 0);
+            z-index: $z-index;
+            @extend %overlay;
+        }
+
+        &:after {
+            content: "";
+            @extend %debug-after;
+            @extend %overlay;
+
+        }
+
+        &:hover:before {
+            content: "";
+            border-style: solid;
+            top: (-1 * $debug-bar-size + 2);
+            border-top-width: $debug-bar-size;
+            z-index: $z-index + 2;
+        }
+
+        &:hover:after {
+            content: "<h#>";
+            top: (-1 * $debug-bar-size + 2);
+            left: 5px;
+            z-index: $z-index + 16;
+        }
+    }
+    h1 {    
+        &:hover:before {
+            background: rgba(255, 0, 0, 0.5);
+            border-color: red;
+        }
+
+        &:hover:after {
+            content: "<h1>";
+       }
+    }
+
+    h2 { 
+        &:hover:before {
+            background: rgba(0, 128, 0, 0.5);
+            border-color: green;
+            color: white;
+        }
+
+        &:hover:after {
+            content: "<h2>";
+       }
+
+    }
+
+    h3 {
+        &:hover:before {
+            background: rgba(0, 0, 255, 0.5);
+            border-color: blue;
+        }
+
+        &:hover:after {
+            content: "<h3>";
+       }
+
+    }
+
+    h4 {
+        &:hover:before {
+            background: rgba(0, 128, 128, 0.5);
+            border-color: teal;
+            }
+
+        &:hover:after {
+            content: "<h4>";
+       }
+
+    }
+
+    h5 { 
+        &:hover:before {
+            background: rgba(255, 255, 0, 0.5);
+            border-color: yellow;
+        }
+
+        &:hover:after {
+            content: "<h5>";
+            color: black;
+        }
+
+    }
+
+    h6 { 
+        &:hover:before {
+            background: rgba(128, 0, 128, 0.5);
+            border-color: purple;
+        }
+
+        &:hover:after {
+            content: "<h6>";
+       }
+    }
+}
+
+@if $DEBUG == "true" {
+    @include generate-debug-scaffolding();
+    
+    .navbar {
+        height: $nav-height + 100;
+        @include generate-debug-scaffolding($z-index: 1001);
+    }
+    
+    .icon-circle {
+        @include generate-debug-class('icon', $padding: 0px, $border: 1px dotted, $z-index: 2);
+
+        &:hover:before {
+            top: (-1 * $debug-bar-size);
+            background: rgba(0, 0, 255, 0.5);
+            border-color: blue;
+        }
+
+        &:hover:after {
+            text-align: left;
+            top: (-1 * $debug-bar-size - 2);
+        }
+    }
+    
+    .section {
+        @include generate-debug-class('section');
+        
+        &:hover:before {
+            background: rgba(128, 0, 128, 0.5);
+            border-color: purple;
+        }
+    }
+    
+    .sub-banner {
+        @include generate-debug-class('sub-banner');
+        
+        &:hover:before {
+            background: rgba(128, 0, 128, 0.5);
+            border-color: purple;
+        }
+    }
+    
+    .half-section {
+        @include generate-debug-class('half-section');
+        
+        &:hover:before {
+            background: rgba(128, 0, 128, 0.5);
+            border-color: purple;
+        }
+    }
+    
+    .qtr-section {
+        @include generate-debug-class('qtr-section');
+        
+        &:hover:before {
+            background: rgba(128, 0, 128, 0.5);
+            border-color: purple;
+        }
+    }
+}
+
+// #############################
+//  Partial Styles
+//  -   SCSS only
+// #############################
+
+%overlay {
+    position: absolute;
+    width: 100% !important;
+    height: 100% !important;
+    top: 0;
+    left: 0;
+}
+
+%debug-after {
+    color: white;
+    font-weight: bold !important;
+    text-align: left !important;
+    text-transform: lowercase !important;
+    font-size: $debug-bar-size - 4 !important;
+    line-height: $debug-bar-size !important;
+
+}

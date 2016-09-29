@@ -1,8 +1,3 @@
-/* ############################
-    Color Styles
-    -   scss/_colors.scss
-############################ */
-
 // Make Basic Color Classes
 // .black { background-color: $black }
 @each $name, $hex in $shades {
@@ -12,6 +7,9 @@
     .#{$name}-text {
         color: $hex;
     }  
+    .overlay .overlay-content.#{$name} {
+        background-color: $hex;
+    }
 }
   
 // Make Shaded Color Classes
@@ -67,5 +65,8 @@
         &.nav ul li a {
              color: $hex;
         }
-    }  
+    }
+    .overlay .overlay-content.#{$name} {
+        background-color: $hex;
+    }
 }

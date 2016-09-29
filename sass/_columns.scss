@@ -3,16 +3,156 @@
 //  -   SCSS only
 // #############################
 
+$x-small:   "xs";
+$m-small:   "ms";
+$small:     "s";
+$medium:    "m";
+$large:     "l";
+$x-large:   "xl";
+
+$xs-breakpoint:     0px;
+$ms-breakpoint:     480px;
+$s-breakpoint:      640px;
+$m-breakpoint:      768px;
+$l-breakpoint:      960px;
+$xl-breakpoint:     1200px;
+
+$breakpoints-up: (
+    $x-small: "",               // Small Mobile Phone in Portrait                                                   {480px and less}
+    $m-small: $ms-breakpoint,   // Medium Mobile Phone in Portrait                                                  {481px to 640px}
+    $small:   $s-breakpoint,    // Small/Medium Mobile Phone in Landscape,  Large Mobile Phone in Portrait          {641px to 768px}
+    $medium:  $m-breakpoint,    // Large Mobile Phone in Landscape,         Small Tablet in Portrait                {769px to 960px}     eg. Nexus 6p, iPad Mini
+    $large:   $l-breakpoint,    // Small Tablet in Landscape,               Large Tablet in Portrait                {961px to 1200px}    eg. iPad Mini, iPad
+    $x-large: $xl-breakpoint,   // Large Tablet in Landscape,               Desktop Computers                       {1201px and more}    eg. iPad, Mac, PC
+);
+
+$breakpoints-down: (
+    $x-small: $ms-breakpoint - 1,   // Small Mobile Phone in Portrait                                                   {480px and less}
+    $m-small: $s-breakpoint - 1,    // Medium Mobile Phone in Portrait                                                  {481px to 640px}
+    $small:   $m-breakpoint - 1,    // Small/Medium Mobile Phone in Landscape,  Large Mobile Phone in Portrait          {641px to 768px}
+    $medium:  $l-breakpoint - 1,    // Large Mobile Phone in Landscape,         Small Tablet in Portrait                {769px to 960px}     eg. Nexus 6p, iPad Mini
+    $large:   $xl-breakpoint - 1,   // Small Tablet in Landscape,               Large Tablet in Portrait                {961px to 1200px}    eg. iPad Mini, iPad
+    $x-large: $xl-breakpoint +240,  // Large Tablet in Landscape,               Desktop Computers                       {1201px to 1440px}   eg. iPad, Mac, PC
+);
+
+$columns:               12;
+
+$gutter-width:          15px;
+$section-padding:       50px;
+$container-width:       1200px;
+$container-large-width: 1200px;
+
+$spacer-height:         10px;
+$col-padding-side:      $gutter-width / 2;
+$col-padding-top:       0;
+$col-padding-bottom:    0;
+$col-padding:           $col-padding-top $col-padding-side $col-padding-bottom $col-padding-side;
+
+$row-margin-top:        $spacer-height;
+
+@mixin respond-to($breakpoint, $max: false) {
+    $raw-query: 0;
+
+    @if($max == true){
+        $raw-query: map-get($breakpoints-down, $breakpoint); 
+    } @else {
+        $raw-query: map-get($breakpoints-up, $breakpoint);
+    }
+
+    @if $raw-query {
+        $query: if(
+            type-of($raw-query) == 'string',
+            unquote($raw-query),
+            inspect($raw-query)
+        );
+
+        @if $query {
+            @if $max == true {
+                @media only screen and (max-width: #{$query}) {
+                  @content;
+                } 
+            } @else {
+                @media only screen and (min-width: #{$query}) {
+                  @content;
+                } 
+            }
+            
+        } @else {
+            @content;
+        }  
+    } @else {
+        @error 'No value found for `#{$breakpoint}`. '
+             + 'Please make sure it is defined in `$breakpoints` map.';
+    }
+}
+
+@mixin generate-columns-for-size($size, $columns) {
+    $col-widths:();
+    
+    @for $i from 1 through $columns {
+        $width: 100% / ($columns / $i);
+
+        @if not index($col-widths, $width) {
+            .col.#{$size}#{$i} {
+                width: $width;
+                margin-left: 0;
+            }
+
+            $col-widths: append($col-widths, $width, comma);
+        }   
+    }
+}
+
+@mixin generate-column-offsets-for-size($size, $columns){
+    $col-widths:();
+    
+    @for $i from 1 through $columns {
+        $offset: 100% / ($columns / $i);
+
+        @if not index($col-widths, $offset) {
+            .col.offset-#{$size}#{$i} {
+                margin-left: $offset;
+            }
+            
+            .col.push-#{$size}#{$i} {
+                left: $offset;
+            }
+            
+            .col.pull-#{$size}#{$i} {
+                right: $offset;
+            }
+
+            $col-widths: append($col-widths, $offset, comma);
+        }   
+    }
+}
+
 /* ############################
     Column Styles
     -   scss/_columns.scss
 ############################ */
 
+.section {
+    padding: $section-padding $gutter-width;
+}
+
+.half-section {
+    padding: ($section-padding / 2) $gutter-width;
+}
+
+.qtr-section {
+    padding: ($section-padding / 4) $gutter-width;
+}
+
 .container {
     width: 100%;
-    max-width: 1064px;
+    max-width: $container-width;
     margin: 0 auto;
     padding: $spacer-height ($gutter-width / 2);
+    
+    &.large {
+        max-width: $container-large-width;    
+    }
     
     & .row {
         margin-left: (-1 * $gutter-width / 2);
@@ -30,6 +170,7 @@
 }
 
 .col {
+    position: relative;
     float: left;
     width: 100%;
     padding: $col-padding;
@@ -40,230 +181,22 @@
     }
 }
 
-@for $i from 1 through length($breakpoints) {
-    $pair:  nth($breakpoints, $i);
+@for $i from 1 through length($breakpoints-up) {
+    $pair:  nth($breakpoints-up, $i);
     $size:  nth($pair, 1);
     $media: nth($pair, 2);
         
-    @if ($media == '' or $size == 'xs') {
+    @if ($media == '') {
         @include generate-columns-for-size($size, $columns);
+        @include generate-column-offsets-for-size($size, $columns);
     } 
-    @if $media != '' and $size != 'xs'{
+    @if $media != '' {
         @include respond-to($size){
             @include generate-columns-for-size($size, $columns);
+            @include generate-column-offsets-for-size($size, $columns);
         }   
-    }  
-}
-
-// #############################
-//  Debug Styles
-//  -   SCSS only
-// #############################
-
-$debug-bar-size: 22px;
-
-@if $DEBUG == "true" {
-    .container {
-        background: #eeeeee;
-    }
-
-    .col {
-        & > div {
-            position: relative;
-
-            &:before {
-                content: "";
-                border: dotted 1px #888888;
-                background-color: rgba(255, 255, 255, 0);
-                @extend %overlay;
-            }
-            
-            &:after {
-                content: "";
-                @extend %debug-after;
-                @extend %overlay;
-
-            }
-            
-            &:hover:before {
-                content: "";
-                border-style: solid;
-                margin-top: (-1 * $debug-bar-size);
-                border-top-width: $debug-bar-size;
-            }
-            
-            &:hover:after {
-                content: "<div>";
-                top: (-1 * $debug-bar-size + 2);
-                left: 5px
-            }   
-        }
-        
-        &:nth-child(6n+1) {    
-            & > div:hover:before {
-                background: rgba(255, 0, 0, 0.5);
-                border-color: red;
-            }
-            
-            & > div:hover:after {}
-        }
-  
-        &:nth-child(6n+2){ 
-            & > div:hover:before {
-                background: rgba(0, 128, 0, 0.5);
-                border-color: green;
-            }
-            
-            & > div:hover:after {}
-
-        }
-   
-        &:nth-child(6n+3){            
-            & > div:hover:before {
-                background: rgba(0, 0, 255, 0.5);
-                border-color: blue;
-            }
-            
-            & > div:hover:after {}
-
-        }
-    
-        &:nth-child(6n+4){
-            & > div:hover:before {
-                background: rgba(0, 128, 128, 0.5);
-                border-color: teal;
-            }
-            
-            & > div:hover:after {}
-
-        }
-   
-        &:nth-child(6n+5){ 
-            & > div:hover:before {
-                background: rgba(255, 255, 0, 0.5);
-                border-color: yellow;
-            }
-            
-            & > div:hover:after {
-                color: black;
-
-            }
-
-        }
-   
-        &:nth-child(6n+6){ 
-            & > div:hover:before {
-                background: rgba(128, 0, 128, 0.5);
-                border-color: purple;
-            }
-            
-            & > div:hover:after {}
-        }
-    }
-    
-    h1, h2, h3, h4, h5, h6 {
-        position: relative;
-
-        &:before {
-            content: "";
-            border: dotted 1px #888888;
-            background-color: rgba(255, 255, 255, 0);
-            @extend %overlay;
-        }
-
-        &:after {
-            content: "";
-            @extend %debug-after;
-            @extend %overlay;
-
-        }
-
-        &:hover:before {
-            content: "";
-            border-style: solid;
-            margin-top: (-1 * $debug-bar-size );
-            border-top-width: $debug-bar-size;
-        }
-
-        &:hover:after {
-            content: "<h#>";
-            top: (-1 * $debug-bar-size + 2);
-            left: 5px
-        }
-    }
-    h1 {    
-        &:hover:before {
-            background: rgba(255, 0, 0, 0.5);
-            border-color: red;
-        }
-
-        &:hover:after {
-            content: "<h1>";
-       }
-    }
-
-    h2 { 
-        &:hover:before {
-            background: rgba(0, 128, 0, 0.5);
-            border-color: green;
-            color: white;
-        }
-
-        &:hover:after {
-            content: "<h2>";
-       }
-
-    }
-
-    h3 {
-        &:hover:before {
-            background: rgba(0, 0, 255, 0.5);
-            border-color: blue;
-        }
-
-        &:hover:after {
-            content: "<h3>";
-       }
-
-    }
-
-    h4 {
-        &:hover:before {
-            background: rgba(0, 128, 128, 0.5);
-            border-color: teal;
-            }
-
-        &:hover:after {
-            content: "<h4>";
-       }
-
-    }
-
-    h5 { 
-        &:hover:before {
-            background: rgba(255, 255, 0, 0.5);
-            border-color: yellow;
-        }
-
-        &:hover:after {
-             content: "<h5>";
-            color: black;
-        }
-
-    }
-
-    h6 { 
-        &:hover:before {
-            background: rgba(128, 0, 128, 0.5);
-            border-color: purple;
-        }
-
-        &:hover:after {
-            content: "<h6>";
-       }
     }
 }
-
 
 // #############################
 //  Partial Styles
@@ -272,20 +205,7 @@ $debug-bar-size: 22px;
 
 %clearfix:after {
     display :   block;
+    width   :   100%;
     clear   :   both;
     content :   '';
-}
-
-%overlay {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-}
-
-%debug-after {
-    color: white;
-    font-weight: bold;
-    font-size: $debug-bar-size - 4;
 }

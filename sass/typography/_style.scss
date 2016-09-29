@@ -1,0 +1,280 @@
+// #############################
+//  Font Normalization
+// #############################
+
+body {
+    font-family: $font;
+    color: $text-color;
+}
+
+textarea {
+    font-family: $font;
+    color: $text-color;
+}
+
+// #############################
+//  Headers
+// #############################
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+    font-weight: bold;
+    font-family: 'Inconsolata', monospace;
+    margin: 10px 0 5px 0;
+    padding: 5px 0 5px 0;
+}
+
+h1, .h1 {
+    font-size: 250%;
+    
+    &.display {
+        
+    }
+}
+
+h2, .h2 {
+    font-size: 200%;
+    
+    &.display {
+        font-family: "Roboto Condensed", sans-serif;
+        font-weight: normal;
+        color: $primary;
+        font-size: 350%;
+        font-style: italic;
+        letter-spacing: 0.1em;
+        text-shadow: rgba($black, 0.25) 2px 2px 2px;
+    }
+}
+
+h3, .h3 {
+    font-size: 150%;
+    
+    &.display {
+        color: $grey;
+    }
+
+    &.display:after {
+        display: block;
+        content: "";
+        width: 100%;
+        margin-top: 5px;
+        text-transform: uppercase;
+        border-bottom: solid 1px; 
+        box-shadow: rgba($grey, 0.25) 0 0 2px;
+    }
+}
+
+h4, .h4 {
+    font-size: 125%;
+    
+    &.display {
+        
+    }
+}
+
+h5, .h5 {
+    font-size: 110%;
+    
+    &.display {
+        
+    }
+}
+
+h6, .h6 {
+    font-size: 90%;
+    
+    &.display {
+        
+    }
+}
+
+/*
+h1.display {
+    font-family: "Roboto Condensed", sans-serif;
+    font-size: 400%;
+    text-transform: uppercase;
+    color: #74A6CE;
+    letter-spacing: 0.1em;
+    text-shadow: #222222 0 0 2px, #444444 4px 4px;
+}
+
+h2.display {
+    font-family: "Roboto Condensed", sans-serif;
+    font-weight: normal;
+    color: #74A6CE;
+    font-size: 350%;
+    font-style: italic;
+    letter-spacing: 0.1em;
+    text-shadow: rgba(0, 0, 0, 0.25) 2px 2px 2px;
+}
+
+h3.display {
+    background-color: #74A6CE;
+    padding: 5px 0;
+    border: solid 1px #45aaee;
+
+    border-top-right-radius: 2px;
+    border-top-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 2px;
+}
+
+h4.display {
+    color: #777777;
+}
+
+h4.display:after {
+    display: block;
+    content: "";
+    width: 100%;
+    margin-top: 5px;
+    text-transform: uppercase;
+    border-bottom: solid 1px; 
+    box-shadow: rgba(110, 110, 110, 0.25) 0 0 2px;
+}
+*/
+
+// #############################
+//  Paragraphs
+// #############################
+
+p {
+    text-align: left;
+    line-height: 133%;
+    font-size: 1em;
+    
+    & + p {
+        margin-top: 15px;
+    }
+}
+
+// #############################
+//  Inline Styles
+// #############################
+
+a {
+    text-decoration: none;
+    color: $link-color;
+    
+    &:hover {
+        color: $link-hover-color;
+    }
+    
+    &:focus, &.focus,
+    &:active, &.active {
+        color: $link-focus-color;
+    }
+}
+
+em {
+    font-style: italic;
+}
+
+small {
+    font-size: 80%;
+}
+
+strong {
+    font-weight: bold;
+}
+
+// #############################
+//  BlockQuotes
+// #############################
+
+q {
+    @include normalize-quote();
+}
+
+@if ($blockquote-fancy == true){
+    blockquote {
+        background-color: $lightgrey;
+        border: solid 4px rgba($grey, 0);    
+        display: block;
+        margin: 25px auto 15px;
+        max-width: 680px;
+        position: relative;
+        text-align: center;
+        width: 100%;
+
+        @include transition();
+        
+        p {
+            display: block;
+            font-size: 150%;
+            padding: 15px;
+            quotes: "\201C""\201D""\2018""\2019";
+            text-indent: 50px;
+            
+            &:before,
+            &:after {
+                font-size: 5em;
+                font-family: $blockquote-font; 
+
+            }
+            
+            &:before {
+                content: open-quote;
+                position: absolute;     
+                color: $white;
+                left: -55px;
+                top: 25px;                
+            }    
+        }
+        
+        &:before {
+            content: "";
+            display: block;
+            width: 60px;
+            height: 60px;
+            background-color: $grey;
+            position: absolute;
+            top: -20px;
+            left: -10px;
+            @include transition(transform 0.15s ease, 
+                background-color 0.4s ease, 
+                border-radius 0.4s ease,
+                font-size 0.4s ease);
+        }
+        
+        &:hover {
+            border: solid 4px rgba($primary, 1);
+            
+            &:before {
+                background-color: $primary;
+                @include border-radius(10%);
+                @include transform(rotateZ(45deg));
+            }
+        }
+        
+        /*
+        &:before,
+        &:after {
+            font-family: $blockquote-font; 
+            font-size: 3em;
+            line-height: 0.1em;
+            vertical-align: -0.5em;
+        }
+
+        &:before {
+            margin-right: 0.25em;
+            content: open-quote;
+        }
+
+        &:after {
+            margin-left: 0.25em;
+            content: close-quote;
+        }
+        */
+    }
+}
+
+// #############################
+//  Horizontal & Vertical Rules
+// #############################
+
+hr {
+    border-style: solid;
+    border-width: 0 0 1px 0;
+    border-color: lighten($grey, $light-5);
+}
