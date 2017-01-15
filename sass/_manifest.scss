@@ -16,17 +16,20 @@
 // #############################
 // Base CSS files
 // #############################
+@import "scaffolding/manifest";
 @import "colors/manifest";
 @import "typography/manifest";
-@import "columns";
 
 @import "app/manifest";
 
 @import "nav";
+@import "footer";
 @import "panels";
 @import "forms";
 @import "chips";
 @import "buttons/manifest";
+@import "components/manifest";
+@import "media";
 @import "svg";
 @import "helpers";
 

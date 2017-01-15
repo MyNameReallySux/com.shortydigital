@@ -24,34 +24,6 @@ img {
     }    
 }
 
-.scale-on-hover {
-     @include transition(transform 0.2s ease);
-        
-    &:hover {
-        @include transform(scale(1.1));
-    }
-}
-
-.overlay {
-    position: relative; 
-    
-    .overlay-content {
-        display: block;
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        background-color: $grey;
-        @include hide(100%);
-        @include transition();
-    }
-    
-    &:hover .overlay-content {
-        @include show(100%);
-    }
-}
-
 %hidden-overflow {
     overflow: hidden;
 }
@@ -111,6 +83,118 @@ img {
         filter: grayscale(100%);
         -webkit-filter: grayscale(100%);
         filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'saturate\' values=\'0\'/></filter></svg>#grayscale");
+    }
+}
+
+.scale-on-hover {
+     @include transition(transform 0.2s ease);
+        
+    &:hover {
+        @include transform(scale(1.1));
+    }
+}
+
+.overlay-on-hover {
+    position: relative; 
+    
+    &.rounded .overlay-content {
+        @extend .rounded;
+    }
+    
+    .overlay-content {
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        @include hide(100%);
+        @include transition();
+        
+        > div {
+            display: block;
+            width: 75%;
+            @include center(both);
+        }
+        
+        p, i {
+            text-align: center;
+            color: $white;
+            font-weight: bold;
+            font-size: 1.5em;
+        }
+        
+        p {
+            small {
+                font-size: 75%;
+            }
+        }
+        
+        i {
+            display: block;
+            margin: 5px auto 10px;
+        }
+    }
+    
+    &:hover .overlay-content {
+        @include show(100%);
+    }
+}
+
+.square-container {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding: 50% 0;
+    border: solid 5px $lightgrey;
+    
+    > div, > img {
+        @include center(both);
+    }
+    
+    &.half {
+        padding: 25% 0;
+    }
+}
+
+figure {
+    figcaption {
+        width: 100%;
+        padding: 10px;
+        background: $lightgrey;
+        font-style: italic;
+        font-size: 90%;
+    }
+    box-shadow: rgba(0, 0, 0, 0.75) 3px 3px 5px;
+}
+
+@include respond-to($medium, true){
+    .overlay-on-hover .overlay-content {
+        padding: 10px;
+        
+        i, p {
+            display: inline;
+            font-size: 100%;
+            width: auto;
+            text-align: left;
+        }
+        
+        i {
+            margin: 0 5px;
+        }
+        
+        br {
+            display: none;
+        }
+        
+        small:before {
+            content: " - ";
+            display: inline;
+        }
+    }  
+    
+    .overlay-on-hover.rounded .overlay-content {
+        @include border-radius(0);
     }
 }
 

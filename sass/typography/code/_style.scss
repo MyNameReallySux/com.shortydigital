@@ -1,0 +1,61 @@
+pre, code {
+    position: relative;
+    font-family: "Inconsolata", monospace;
+    background: $lightgrey;
+    line-height: 125%;
+    @include border-radius(5px);
+}
+
+pre {
+    display: block;
+    padding: 10px 10px;
+    white-space: pre-wrap;
+    border: solid 1px;   
+
+    &:after {
+        content: attr(data-type);
+        font-family: $font;
+        font-weight: bold;
+        width: auto;
+        display: block;
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        padding: 1px 5px;
+        border-radius: 2px;
+        color: $storm;
+        background: $grey;
+        border: solid 1px;     
+    }
+    
+    &.html:after{
+        content: "HTML";
+    }
+    
+    &.java:after{
+        content: "Java";
+    }
+    
+    &.html {
+        .tag {
+            color: $indigo;
+        }
+        
+        .string {
+            color: $orange;
+        }
+    }
+}
+
+code {
+    display: inline-block;
+    padding: 2px 2px;
+    
+    &.wrap:before {
+        content: "<";
+    }
+    
+    &.wrap:after {
+        content: ">";
+    }
+}

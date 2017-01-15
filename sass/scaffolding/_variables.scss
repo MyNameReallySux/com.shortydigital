@@ -1,0 +1,30 @@
+$x-small:   "xs";
+$m-small:   "ms";
+$small:     "s";
+$medium:    "m";
+$large:     "l";
+$x-large:   "xl";
+
+$xs-breakpoint:     0px;
+$ms-breakpoint:     480px;
+$s-breakpoint:      640px;
+$m-breakpoint:      768px;
+$l-breakpoint:      960px;
+$xl-breakpoint:     1200px;
+
+$columns:               12;
+
+$gutter-width:          10px;
+$spacer-height:         10px;
+$section-padding:       50px;
+$container-width:       1200px;
+$container-large-width: 1440px;
+$container-padding:     $spacer-height ($gutter-width / 2);
+
+$col-padding-side:      $gutter-width / 2;
+$col-padding-top:       0;
+$col-padding-bottom:    $spacer-height;
+$col-padding:           $col-padding-top $col-padding-side $col-padding-bottom $col-padding-side;
+
+$row-margin-top:        $spacer-height;
+$row-margin-side:      -1 * $gutter-width / 2;

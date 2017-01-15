@@ -1,0 +1,132 @@
+{{!< layout/master.handlebars}}
+{{!-- index.handlebars in views--}}
+<section id="city-banner" class="cover banner"></section>
+<div class="container">
+     <div class="row">
+        <div class="col{{#if posts}} m8{{/if}} content">
+            <div class="panel white">
+                <section>
+                    <h2>This is the {{context.title}} page!</h2>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eleifend nunc eu dolor scelerisque, eu elementum nisi sodales. Aenean faucibus accumsan ligula, non ornare augue finibus tristique. Nullam pellentesque et orci vitae tempor. Nullam in purus lacinia libero aliquam placerat. Nulla eleifend cursus nunc, id imperdiet justo molestie nec. Morbi
+                    </p>
+
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eleifend nunc eu dolor scelerisque, eu elementum nisi sodales. Aenean faucibus accumsan ligula, non ornare augue finibus tristique. Nullam pellentesque et orci vitae tempor. Nullam in purus lacinia libero aliquam placerat. Nulla eleifend cursus nunc, id imperdiet justo molestie nec. Morbi
+                    </p>
+
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eleifend nunc eu dolor scelerisque, eu elementum nisi sodales. Aenean faucibus accumsan ligula, non ornare augue finibus tristique. Nullam pellentesque et orci vitae tempor. Nullam in purus lacinia libero aliquam placerat. Nulla eleifend cursus nunc, id imperdiet justo molestie nec. Morbi
+                    </p>
+                    <div class="panel shadow white-text light-6">
+                        <header>
+                            <h5><strong>Default</strong> Theme</h5>
+                        </header>
+                        <section class="pad-top-0">
+                            <a href="#" class="btn prompt x-small">x-small</a>
+                            <a href="#" class="btn info small">small</a>
+                            <a href="#" class="btn">normal</a>
+                            <a href="#" class="btn success large">large</a>
+                            <a href="#" class="btn warning x-large">x-large</a>
+                            <a href="#" class="btn danger huge">huge</a>
+                        </section>
+                    </div>
+
+                    <div class="modern panel shadow white-text light-5">
+                        <header>
+                            <h5><strong>Modern</strong> Theme</h5>
+                        </header>
+                        <section>
+                            <a href="#" class="btn prompt x-small">x-small</a>
+                            <a href="#" class="btn info small">small</a>
+                            <a href="#" class="btn">normal</a>
+                            <a href="#" class="btn success large">large</a>
+                            <a href="#" class="btn warning x-large">x-large</a>
+                            <a href="#" class="btn danger huge">huge</a>
+                        </section>
+                    </div>
+                    
+                    <div class="simple panel shadow white-text light-4">
+                        <header>
+                            <h5><strong>Simple</strong> Theme</h5>
+                        </header>
+                        <section>
+                            <a href="#" class="btn prompt x-small">x-small</a>
+                            <a href="#" class="btn info small">small</a>
+                            <a href="#" class="btn">normal</a>
+                            <a href="#" class="btn success large">large</a>
+                            <a href="#" class="btn warning x-large">x-large</a>
+                            <a href="#" class="btn danger huge">huge</a>
+                        </section>
+                    </div>     
+                    
+                    <div class="flat panel shadow white-text light-3">
+                        <header>
+                            <h5><strong>Flat</strong> Theme</h5>
+                        </header>
+                        <section>
+                            <a href="#" class="btn prompt x-small">x-small</a>
+                            <a href="#" class="btn info small">small</a>
+                            <a href="#" class="btn">normal</a>
+                            <a href="#" class="btn success large">large</a>
+                            <a href="#" class="btn warning x-large">x-large</a>
+                            <a href="#" class="btn danger huge">huge</a>
+                        </section>
+                    </div>      
+                    
+                    <div class="arcade panel shadow white-text light-2">
+                        <header>
+                            <h5><strong>Arcade</strong> Theme</h5>
+                        </header>
+                        <section>
+                            <a href="#" class="btn prompt x-small">x-small</a>
+                            <a href="#" class="btn info small">small</a>
+                            <a href="#" class="btn">normal</a>
+                            <a href="#" class="btn success large">large</a>
+                            <a href="#" class="btn warning x-large">x-large</a>
+                            <a href="#" class="btn danger huge">huge</a>
+                        </section>
+                    </div>
+                    
+                    <div class="retro panel shadow white-text light-1">
+                        <header>
+                            <h5><strong>Retro</strong> Theme</h5>
+                        </header>
+                        <section>
+                            <a href="#" class="btn prompt x-small">x-small</a>
+                            <a href="#" class="btn info small">small</a>
+                            <a href="#" class="btn">normal</a>
+                            <a href="#" class="btn success large">large</a>
+                            <a href="#" class="btn warning x-large">x-large</a>
+                            <a href="#" class="btn danger huge">huge</a>
+                        </section>
+                    </div>
+                </section>
+            </div>
+        </div>    
+        {{#if posts}}
+        <div class="col m4">
+            <div class="panel white">
+                <section>
+                    <h2>Recent Blog Posts</h2>
+                    {{#each posts}}
+                        <h3>{{title}}</h3>
+                        <h5>Posted By: {{author}}</h5>
+                        <div>
+                            <p>
+                                {{snippet}}
+                            </p>
+                        </div>
+                        <br/>
+                        <div>
+                            <a href="/blog/{{_id}}">Read More</a>
+                        </div>
+                        <hr/>
+                    {{/each}}
+                </section>
+            </div>
+            
+        </div>                    
+        {{/if}}    
+    </div>
+</div>

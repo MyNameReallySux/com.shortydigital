@@ -2,11 +2,14 @@
 //  Font Settings
 // #############################
 
-$font:              'Roboto Condensed', sans-serif;
+@import url('https://fonts.googleapis.com/css?family=Bungee+Inline|Inconsolata:400,700|Raleway:300,400,700,900');
+
+$font:              'Raleway', sans-serif;
 $font-size:         16px;
 $text-color:        $black;
 
-$heading-font:      'Inconsolata', monospace;
+$heading-font:      'Raleway', sans-serif;
+$thick-font:        'Bungee Inline', sans-serif;
 
 $fa-font-path:      "../fonts/font-awesome/";
 

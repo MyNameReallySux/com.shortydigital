@@ -52,7 +52,10 @@ $lightgrey:  #eeeeee;
 $mediumgrey: #d3d3d3;
 $silver:     #c0c0c0;
 $grey:       #aeaeae;
-$darkgrey:   #808080;
+$shade:      #808080;
+$darkgrey:   #626262;
+$storm:      #4a4a4a;
+$shadow:     #222222;
 
 $clay:       #a1a1bf;
 $slate:      #708090;
@@ -81,7 +84,7 @@ $orange:     #ffad33;
 $carrot:     #ed9121;
 $pumpkin:    #ff5722;
 $tangelo:    #F94D00;
-$orange-red: #FF4500;
+$orangered:  #FF4500;
 
 $tan:        #D2B48C;
 $lion:       #c19a6b;
@@ -135,9 +138,9 @@ $focus-color:  lighten($blue, $light-1);
 //   Project Theme Colors
 // ############################# 
 
-$primary:      $cyan   or #00bcd4;
-$secondary:    $violet or #673ab7;
-$tertiary:     $forest or #8bc34a;
-$quaternary:   $yellow or #ffeb3b;
-$quinary:      $brick  or #d10000;
+$primary:      $blue   or #2196f3;
+$secondary:    $indigo or #3f51b5;
+$tertiary:     $violet or #673ab7;
+$quaternary:   $forest or #8bc34a;
+$quinary:      $yellow or #ffeb3b;
 $senary:       $orange or #ffad33;

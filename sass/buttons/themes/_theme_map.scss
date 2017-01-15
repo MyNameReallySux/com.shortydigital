@@ -4,7 +4,7 @@
 
 $btn-themes: (
     "default":  (
-        "_use":     "false",
+        "_use":     "true",
         "style":    $default-btn
     ),
 
@@ -19,12 +19,17 @@ $btn-themes: (
     ),
     
     "simple":  (
-        "_use":     "false",
-        "style":    $arcade-btn
+        "_use":     "true",
+        "style":    $simple-btn
     ),
     
     "modern":  (
-        "_use":     "false",
+        "_use":     "true",
         "style":    $modern-btn
+    ),
+    
+    "retro":  (
+        "_use":     "true",
+        "style":    $retro-btn
     ),
 );

@@ -4,9 +4,26 @@
         {{> head}}
     </head>
     <body>
-        {{> header}}
-        {{{body}}}
-        {{> footer}}
+        <nav class="nav sticky">
+            {{> navbar}}
+        </nav>
+        
+        <div class="main-content">
+            <header class="header">
+                {{> header}}
+            </header>
+			<main>
+				{{{body}}}
+			</main>
+            <footer class="footer">
+                {{> footer}}
+            </footer>
+        </div>
+        
+        <div class="nav-content">
+        	{{> menu}}
+        </div>
+        
         {{> scripts}}
     </body>
 

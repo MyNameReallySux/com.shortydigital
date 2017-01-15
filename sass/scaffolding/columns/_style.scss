@@ -1,0 +1,10 @@
+.row {
+    @include make-row($row-margin-top);
+}
+
+.col {
+    @include make-column($col-padding);
+    @include make-container-row(".row", $row-margin-side);
+}
+
+@include generate-columns($breakpoints-up);

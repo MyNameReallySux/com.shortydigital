@@ -10,7 +10,18 @@
 
 .panel {
     background: light($grey, $light-5);
-    padding: 15px;
     @include border-radius(10px);
     margin-bottom: $spacer-height;
+    
+    header {
+        padding: 10px 15px 0px;
+    }
+    
+    section {
+        padding: 10px 15px;
+    }
+    
+    footer {
+        padding: 0px 15px 10px;
+    }
 }

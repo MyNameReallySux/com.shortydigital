@@ -7,7 +7,7 @@
     .#{$name}-text {
         color: $hex;
     }  
-    .overlay .overlay-content.#{$name} {
+    .overlay-on-hover .overlay-content.#{$name} {
         background-color: $hex;
     }
 }
@@ -56,6 +56,7 @@
 // .crimson { background-color: $crimson }
 
 @each $name, $hex in $theme-colors {
+    
     .#{$name} {
         background-color: $hex;
     }    
@@ -66,7 +67,40 @@
              color: $hex;
         }
     }
-    .overlay .overlay-content.#{$name} {
+
+    @each $shade, $percent in $brightness {
+        @if str-index($shade, "dark") != null {
+            .#{$name}.#{$shade} {
+                background-color: darken($hex, $percent);// !important;
+            }    
+            .#{$name}-text.#{$shade}-text {
+                color: darken($hex, $percent);// !important;
+
+                &.nav ul li a {
+                     color: darken($hex, $percent);// !important;
+                }
+            }  
+        } @else if str-index($shade, "light") != null {       
+            .#{$name}.#{$shade} {
+                background-color: lighten($hex, $percent);// !important;
+            }    
+            .#{$name}-text.#{$shade}-text {
+                color: lighten($hex, $percent);// !important;
+
+                &.nav ul li a {
+                     color: lighten($hex, $percent);// !important;
+                }
+            }  
+        }
+    }
+    
+    .overlay-on-hover .overlay-content.#{$name} {
         background-color: $hex;
+    }
+
+    @include respond-to($medium, true){
+        .overlay-on-hover .overlay-content.#{$name} {
+            background-color: $black;
+        }
     }
 }

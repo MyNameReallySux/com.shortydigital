@@ -1,31 +1,14 @@
 {{#if context.admin}}
-<header>
-    <div class="admin">
-        <div class="button-nav">
-            <ul>
-                <li>Link 1</li>
-                <li>Link 2</li>
-                <li>Link 3</li>
-            </ul>
-        </div>
+<div class="admin">
+    <div class="button-nav">
+        <ul>
+            <li>Link 1</li>
+            <li>Link 2</li>
+            <li>Link 3</li>
+        </ul>
     </div>
-    {{/if}}
-    <div class="nav overhang">
-        <div class="container">
-            <div class="menu-btn">...</div>
-            <div class="row">
-                <div class="col xs12 s4">
-                    <h1 class="brand">Shorty<span>DIGITAL</span></h1>
-                </div>
-                <div class="col xs12 s8">
-                    <ul>
-                        <li><a href="/">            Home</a></li>
-                        <li><a href="/about">       About</a></li>
-                        <li><a href="/blog">        Blog</a></li>
-                        <li><a href="/downloads">   Downloads</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
+</div>
+{{/if}}
+<nav class="nav overhang">
+    {{> navbar}}
+</nav>

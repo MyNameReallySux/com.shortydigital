@@ -1,5 +1,5 @@
 {
-  "name": "Shorty Digital",
+  "name": "shorty-digital",
   "version": "0.1.0",
   "description": "Chris Coppola's portfolio website",
   "main": "index.js",
@@ -36,7 +36,12 @@
     "cookie-parser": "^1.4.1",
     "express": "^4.13.4",
     "express-handlebars": "^3.0.0",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-sass": "^1.0.0",
+    "grunt-sass": "^1.2.1",
     "handlebars": "^4.0.5",
+    "highlight.js": "^9.7.0",
+    "jquery": "^3.1.1",
     "morgan": "^1.7.0",
     "serve-favicon": "^2.3.0",
     "underscore": "^1.8.3"

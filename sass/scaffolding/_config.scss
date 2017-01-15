@@ -1,0 +1,17 @@
+$breakpoints-up: (
+    $x-small: "",               // Small Mobile Phone in Portrait                                                   {480px and less}
+    $m-small: $ms-breakpoint,   // Medium Mobile Phone in Portrait                                                  {481px to 640px}
+    $small:   $s-breakpoint,    // Small/Medium Mobile Phone in Landscape,  Large Mobile Phone in Portrait          {641px to 768px}
+    $medium:  $m-breakpoint,    // Large Mobile Phone in Landscape,         Small Tablet in Portrait                {769px to 960px}     eg. Nexus 6p, iPad Mini
+    $large:   $l-breakpoint,    // Small Tablet in Landscape,               Large Tablet in Portrait                {961px to 1200px}    eg. iPad Mini, iPad
+    $x-large: $xl-breakpoint,   // Large Tablet in Landscape,               Desktop Computers                       {1201px and more}    eg. iPad, Mac, PC
+);
+
+$breakpoints-down: (
+    $x-small: $ms-breakpoint - 1,   // Small Mobile Phone in Portrait                                                   {480px and less}
+    $m-small: $s-breakpoint - 1,    // Medium Mobile Phone in Portrait                                                  {481px to 640px}
+    $small:   $m-breakpoint - 1,    // Small/Medium Mobile Phone in Landscape,  Large Mobile Phone in Portrait          {641px to 768px}
+    $medium:  $l-breakpoint - 1,    // Large Mobile Phone in Landscape,         Small Tablet in Portrait                {769px to 960px}     eg. Nexus 6p, iPad Mini
+    $large:   $xl-breakpoint - 1,   // Small Tablet in Landscape,               Large Tablet in Portrait                {961px to 1200px}    eg. iPad Mini, iPad
+    $x-large: $xl-breakpoint +240,  // Large Tablet in Landscape,               Desktop Computers                       {1201px to 1440px}   eg. iPad, Mac, PC
+);

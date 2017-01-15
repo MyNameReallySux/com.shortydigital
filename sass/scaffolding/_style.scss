@@ -1,0 +1,40 @@
+section, .section {
+    padding: $section-padding $gutter-width;
+    position: relative;
+    
+    &.half {
+        padding: ($section-padding / 2) $gutter-width;
+    }
+    
+    &.qtr {
+        padding: ($section-padding / 4) $gutter-width;
+    }
+}
+
+.container {
+    @include make-container(1200px, $container-padding);
+    @include make-container-row(".row", $row-margin-side);
+    
+    &.large {
+        max-width: $container-large-width;    
+    }
+}
+
+@include respond-to($small, true){
+    section, .section {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+
+// #############################
+//  Partial Styles
+//  -   SCSS only
+// #############################
+
+%clearfix:after {
+    display :   block;
+    width   :   100%;
+    clear   :   both;
+    content :   '';
+}

@@ -1,0 +1,59 @@
+// #############################
+//  Media Queries
+// #############################
+
+@mixin respond-to($breakpoint, $max: false) {
+    $raw-query: 0;
+
+    @if($max == true){
+        $raw-query: map-get($breakpoints-down, $breakpoint); 
+    } @else {
+        $raw-query: map-get($breakpoints-up, $breakpoint);
+    }
+
+    @if $raw-query {
+        $query: if(
+            type-of($raw-query) == 'string',
+            unquote($raw-query),
+            inspect($raw-query)
+        );
+
+        @if $query {
+            @if $max == true {
+                @media only screen and (max-width: #{$query}) {
+                  @content;
+                } 
+            } @else {
+                @media only screen and (min-width: #{$query}) {
+                  @content;
+                } 
+            }
+            
+        } @else {
+            @content;
+        }  
+    } @else {
+        @error 'No value found for `#{$breakpoint}`. '
+             + 'Please make sure it is defined in `$breakpoints` map.';
+    }
+}
+
+// #############################
+//  Containers
+// #############################
+
+@mixin make-container($max-width: $container-width, $padding: $spacer-height ($gutter-width / 2)) {
+    width: 100%;
+    max-width: $max-width;
+    margin: 0 auto;
+    padding: $padding;
+    
+    @content;
+}
+
+@mixin make-container-row($row, $side-margin: $row-margin-side){
+    & > #{$row} {
+        margin-right: $row-margin-side;
+        margin-left: $row-margin-side;
+    } 
+}

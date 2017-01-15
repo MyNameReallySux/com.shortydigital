@@ -7,9 +7,7 @@ $chip-height: 32px;
 $chip-text-size: 32px;
 $chip-margin: 3px;
 $chip-primary-color: #eeeeee;
-$chip-secondary-color: #dddddd;
-$chip-justify: flex-left;
-
+$chip-secondary-color: #eeeeee;
 
 /* ############################
     Column Styles
@@ -18,7 +16,7 @@ $chip-justify: flex-left;
 
 .chips {
     display: flex;
-    justify-content: $chip-justify;
+    justify-content: flex-start;
     flex-wrap: wrap;
     
     %chip-fix {
@@ -33,13 +31,40 @@ $chip-justify: flex-left;
         line-height: $chip-height;
         font-size: 85%;
         padding: 0px 12px;
-        margin-bottom: $chip-margin;
+        margin-bottom: $chip-margin * 2;
         margin-right: $chip-margin;
+        @include transition();
+        
+        &:nth-child(6n+1):hover {
+            background: $primary;    
+        }
+        
+        &:nth-child(6n+2):hover {
+            background: $secondary;    
+        }
+        
+        &:nth-child(6n+3):hover {
+            background: $tertiary;    
+        }
+        
+        &:nth-child(6n+4):hover {
+            background: $quaternary;    
+        }
+        
+        &:nth-child(6n+5):hover {
+            background: $danger;    
+        }
+        
+        &:nth-child(6n+6):hover {
+            background: $quinary;    
+        }
     }
     
     & li {
         display: inline-block;
         background: $chip-primary-color;
+        text-align: center;
+        flex-grow: 1;
         
         @extend %chip-content;
         @include border-radius(20px);
@@ -47,7 +72,6 @@ $chip-justify: flex-left;
         &.fix {
             background: transparent;
         }
-        
     }
     
     &.fix {
@@ -68,9 +92,13 @@ $chip-justify: flex-left;
         }
     }
     
+    @include respond-to($small, true){
+        justify-content: space-between;
+    }
+    
 }
 
-, .chip {
+.chip {
     display: inline-block;
     background: $chip-primary-color;
 
@@ -81,7 +109,7 @@ $chip-justify: flex-left;
         background: $chip-secondary-color;
         
         &.fix {
-        background: transparent;
+            background: transparent;
         }
     }
     

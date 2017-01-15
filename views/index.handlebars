@@ -1,143 +1,185 @@
+
 {{!< layout/master.handlebars}}
 {{!-- index.handlebars in views--}}
-
-<section id="city-banner" class="cover">
+{{> components/banner 
+    name="main" 
+    title="Chris Coppola" 
+    subtitle="Professional Nerd"
+    classes="cover"
+    overlay-classes="light"
+}}
+<section id="love-to-code" class="white">
     <div class="container">
-        <div class="row">
-            <div class="col xs12 s10 offset-s1">
-                <div class="white panel" style="margin-top: 125px">
-                    <h2 class="display">About Me</h2>
-                    <h3 class="display">And by me, I mean Chris Coppola</h3>
-
-                    <div class="container">
-                        <h2>Where it all began...</h2>
-                        <p>
-                            My love of coding was an offshoot of my love for gaming. I started playing games at a very young age, playing classics such as Super Mario Bros, Sonic the Hedgehog, Zelda, Chrono Trigger and Diablo II. I was open to playing all types of games because as I was playing, I was learning.
-                        </p>
-                        <div class="container">
-                            <div class="row">
-                                <div class="col xs4">
-                                    <div class="line-border overlay">
-                                        <img class="responsive" src="/images/games/thumb/super-mario-bros-1.png"/>
-                                        <div class="overlay-content primary">
-                                            <i class="fa fa-search"></i>
-                                            <p>Super Mario Bros.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col xs4">
-                                    <div class="line-border overlay">
-                                        <img class="responsive scale-on-hover" src="/images/games/thumb/chrono-trigger-1.png"/>
-                                        <div class="overlay-content secondary">
-                                            <i class="fa fa-search"></i>
-                                            <p>Super Mario Bros.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col xs4">
-                                    <div class="line-border overlay">
-                                        <img class="responsive scale-on-hover" src="/images/games/thumb/diablo-2-1.png"/> 
-                                        <div class="overlay-content tertiary">
-                                            <i class="fa fa-search"></i>
-                                            <p>Super Mario Bros.</p>
-                                        </div>
-                                    </div> 
-                                </div>
-                            </div>
-                        </div>
-                        <p>
-                            I learned about World History, playing Age of Empires II. The random map system was amazing, but my real love was in the Single Player Campaign. I still remember my first time playing the Joan of Ark campaign. Because of this game, I have grown to love researching about the ancient and current civilizations, weapons technology, war strategies, and cultural influences. 
-                        </p>
-                        <p>
-                            My coding experience started with a program called RPG Maker 2000. This program was used to make Japanese, turn based RPG's like Final Fantasy. Later versions implemented a scripting language called Ruby (I'm sure you've heard of it.) to make all sorts of changes to the engine. Although I was no good at coding, I could make basic modifications to other peoples code.
-                        </p>
-
-                        <h3>Heading 3</h3>
-                        <p>
-                            <q>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</q> Curabitur eleifend nunc eu dolor scelerisque, eu elementum nisi sodales. Aenean faucibus accumsan ligula, non ornare augue finibus tristique. Nullam pellentesque et orci vitae tempor. Nullam in purus lacinia libero aliquam placerat. Nulla eleifend cursus nunc, id imperdiet justo molestie nec. Morbi
-                        </p>
-                        
-                        <blockquote>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eleifend nunc eu dolor scelerisque, eu elementum nisi sodales.</p>
-                        </blockquote>
-
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eleifend nunc eu dolor scelerisque, eu elementum nisi sodales. Aenean faucibus accumsan ligula, non ornare augue finibus tristique. Nullam pellentesque et orci vitae tempor. Nullam in purus lacinia libero aliquam placerat. Nulla eleifend cursus nunc, id imperdiet justo molestie nec. Morbi
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div><!-- row -->
+        <h1>I <span class="primary-text">love</span> to code ...</h1>
+        <hr class="break short center primary"/> 
+        <div class="content">
+            <h3>
+                <i class="fa fa-code" aria-hidden="true"></i>
+            </h3>
+            <p class="lead-strong">
+                Code can be beautiful. Coding is both an art, and a science. I love the feeling of solving a problem or creating a complex system. I focus on making code both readable and efficient. I am always looking to code new things. Whether it be configuring a web server, writing a game engines, or creating a rich REST api, I look forward to meeting the challenge!</p>
+            <pre class="java center max-400">
+class Code {
+    public bool isBeautiful = false;
+    public Code(bool isBeautiful){
+        this.isBeautiful = isBeautiful;
+    }
+    
+    public static void main(string args[]){
+        Code code = new Code(true);
+        System.out.println("Code is " + code.isBeautiful + "!");
+    }
+}</pre>
+        </div>
     </div>
 </section>
-
-<!--
-<div class="container">
-
-    <h2>This is the {{title}} page!</h2>
-    <div class="row">
-        <div class="col{{#if posts}} m8{{/if}}">
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eleifend nunc eu dolor scelerisque, eu elementum nisi sodales. Aenean faucibus accumsan ligula, non ornare augue finibus tristique. Nullam pellentesque et orci vitae tempor. Nullam in purus lacinia libero aliquam placerat. Nulla eleifend cursus nunc, id imperdiet justo molestie nec. Morbi
-            </p>
-
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eleifend nunc eu dolor scelerisque, eu elementum nisi sodales. Aenean faucibus accumsan ligula, non ornare augue finibus tristique. Nullam pellentesque et orci vitae tempor. Nullam in purus lacinia libero aliquam placerat. Nulla eleifend cursus nunc, id imperdiet justo molestie nec. Morbi
-            </p>
-
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eleifend nunc eu dolor scelerisque, eu elementum nisi sodales. Aenean faucibus accumsan ligula, non ornare augue finibus tristique. Nullam pellentesque et orci vitae tempor. Nullam in purus lacinia libero aliquam placerat. Nulla eleifend cursus nunc, id imperdiet justo molestie nec. Morbi
-            </p>
-            <div class="panel prompt light-3">
-                <a href="#" class="btn prompt x-small">x-small</a>
-                <a href="#" class="btn info small">small</a>
-                <a href="#" class="btn">normal</a>
-                <a href="#" class="btn success large">large</a>
-                <a href="#" class="btn warning x-large">x-large</a>
-                <a href="#" class="btn danger huge">huge</a>
-            </div>
-            
-            <div class="flat panel info light-3">
-                <a href="#" class="btn prompt x-small">x-small</a>
-                <a href="#" class="btn info small">small</a>
-                <a href="#" class="btn">normal</a>
-                <a href="#" class="btn success large">large</a>
-                <a href="#" class="btn warning x-large">x-large</a>
-                <a href="#" class="btn danger huge">huge</a>
-            </div>
-            
-            <div class="arcade panel success light-3">
-                <a href="#" class="btn prompt x-small">x-small</a>
-                <a href="#" class="btn info small">small</a>
-                <a href="#" class="btn">normal</a>
-                <a href="#" class="btn success large">large</a>
-                <a href="#" class="btn warning x-large">x-large</a>
-                <a href="#" class="btn danger huge">huge</a>
+<section id="code-is-beautiful">
+    <div class="background parallax"></div>
+    <div class="overlay light"></div>
+    <div class="caption-boxes">
+        <p>Code is Beautiful</p>
+    </div>
+</section>
+<section id="love-to-learn" class="white">
+    <div class="container">  
+        <h1>I <span class="primary-text">love</span> to learn ...</h1>
+        <hr class="break short center primary"/> 
+        <div class="row">
+            <div class="col xs12">
+                <p class="content">I have experience in a variety of languages, frameworks, and programs. Below is an overview of what I know. If you would like to learn more, check out my full resume.</p>
+                <a class="btn modern x-large primary right" href="/about/resume">View My Resume</a>
             </div>
         </div>
-        {{#if posts}}
-        <div class="col m4">
-            <h3>Recent Blog Posts</h3>
-            <div class="row">
-                <div class="container">
-                    {{#each posts}}
-                        <h3>{{title}}</h3>
-                        <h5>Posted By: {{author}}</h5>
-                        <div>
-                            <p>
-                                {{snippet}}
-                            </p>
-                        </div>
-                        <br/>
-                        <div>
-                            <a href="/blog/{{_id}}">Read More</a>
-                        </div>
-                        <hr/>
-                    {{/each}}
-                </div>
-            </div>
-        </div>                    
-        {{/if}}    
     </div>
-</div>
--->
+</section>
+<section id="experience-table">
+    <div class="background parallax"></div>
+    <div class="overlay light"></div>
+    <div class="container icon-gallery">
+        <div class="panel white">
+            <section>
+                <div class="row">
+                    <div class="col xs6 m3">
+                        <div class="gallery-image">
+                            <img src="/images/programming/html-icon.png"/>
+                        </div>
+                        <div class="gallery-content">
+                            <h5 class="text-center">Front End</h5>
+                            <hr class="break short center"/>
+                            <ul>
+                                <li>HTML 5</li>
+                                <li>Handlebars</li>
+                                <li>EJS</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col xs6 m3">
+                        <div class="gallery-image">
+                            <img src="/images/programming/css-icon.png"/>
+                        </div>
+                        <div class="gallery-content">
+                            <h5 class="text-center">Style</h5>
+                            <hr class="break short center"/>
+                            <ul>
+                                <li>CSS3</li>
+                                <li>SASS</li>
+                                <li>Bootstrap</li>
+                                <li>Material Design</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col xs6 m3">
+                        <div class="gallery-image">
+                            <img src="/images/programming/js-icon.png"/>
+                        </div>
+                        <div class="gallery-content">
+                            <h5 class="text-center">Javascript</h5>
+                            <hr class="break short center"/>
+                            <ul>
+                                <li>jQuery</li>
+                                <li>Ember.js</li>
+                                <li>AJAX</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col xs6 m3">
+                        <div class="gallery-image">
+                            <img src="/images/programming/node-icon.png"/>
+                        </div>
+                        <div class="gallery-content">
+                            <h5 class="text-center">Server</h5>
+                            <hr class="break short center"/>
+                            <ul>
+                                <li>Node.js</li>
+                                <li>Express</li>
+                                <li>Apache</li>
+                                <li>XAMPP</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col xs6 m3">
+                        <div class="gallery-image">
+                            <img src="/images/programming/java-icon.png"/>
+                        </div>
+                        <div class="gallery-content">
+                            <h5 class="text-center">Programming</h5>
+                            <hr class="break short center"/>
+                            <ul>
+                                <li>Java 8</li>
+                                <li>C#/C++</li>
+                                <li>PHP 5</li>
+                                <li>Python</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col xs6 m3">
+                        <div class="gallery-image">
+                            <img class="wide" src="/images/programming/mongo-icon.png"/>
+                        </div>
+                        <div class="gallery-content">
+                            <h5 class="text-center">Database / CMS</h5>
+                            <hr class="break short center"/>
+                            <ul>
+                                <li>Wordpress</li>
+                                <li>Kentico</li>
+                                <li>MySQL</li>
+                                <li>monboDB</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col xs6 m3">
+                        <div class="gallery-image">
+                            <img class="wide" src="/images/programming/git-icon.png"/>
+                        </div>
+                        <div class="gallery-content">
+                            <h5 class="text-center">Project Management</h5>
+                            <hr class="break short center"/>
+                            <ul>
+                                <li>Git/Github</li>
+                                <li>NPM</li>
+                                <li>Maven</li>
+                                <li>Grunt.js</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col xs6 m3">
+                        <div class="gallery-image">
+                            <img class="wide" src="/images/programming/android-icon.png"/>
+                        </div>
+                        <div class="gallery-content">
+                            <h5 class="text-center">Mobile</h5>
+                            <hr class="break short center"/>
+                            <ul>
+                                <li>Android</li>
+                                <li>iOS (soon!)</li>
+                                <li>Responsive Design</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>

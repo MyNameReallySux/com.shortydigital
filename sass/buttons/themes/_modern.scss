@@ -5,17 +5,17 @@
 $modern-btn: (
     "background":       $grey,
     "border":           none,
-    "border-radius":    0,
+    "border-radius":    5px,
     "color":            $white,    
     "font-size":        0.75em,
     "margin":           inherit,    
     "padding":          10px 25px,
     
-    "on-hover":         (
+    "on-hover": (
         "color":        $white,
         "background":   lighten($grey, $light-3)
     ),
-    "on-focus":         (
+    "on-focus": (
         "box-shadow":   $focus-color 0 0 2px 2px,
         "outline":      none,       
     )

@@ -7,14 +7,17 @@ $nav-height: 50px;
 $nav-color: rgba($black, 0.25);
 
 $nav-btn-margin: 5px;
-$nav-btn-padding: 17.5px 25px;
-$nav-btn-size: $nav-height - $nav-btn-margin * 2;;
+$nav-btn-padding: 0 25px;
+$nav-btn-size: $nav-height - $nav-btn-margin * 2;
+
+$overlay-color: $black or #000000;
 
 /* ############################
     Navigation Styles
     -   scss/_nav.scss
 ############################ */
 
+// Main Navigation Wrapper
 .nav {
     position: relative;
     height: $nav-height;
@@ -26,35 +29,41 @@ $nav-btn-size: $nav-height - $nav-btn-margin * 2;;
         padding-bottom: 0;
     }
     
+    // Navigation Menu
     ul {
         display: flex;
         width: 100%;
-        justify-content: space-between;
+        justify-content: flex-end;
         
+        // Nav Menu Item Wrapper
         > li {
             display: inline-block;
-            
+            line-height: $nav-height;
+
+            // Nav Menu Item
             > a {
                 color: $white;
-                font-size: 120%;
+                display: block;
                 text-shadow: darken($grey, $dark-5) 1px 1px 2px;
-                font-weight: bold;
                 letter-spacing: 1px;
                 padding: $nav-btn-padding;
                 @include border-radius(0);
                 @include transition(all 0.5s ease 0s);
-
             }
             
         }
         
+        // Nav Menu Item Hover Styles
         > li:hover a {
-            color: $primary;
+            color: $black;
+            background: $white;
         }
     }
     
+    // Nav Manu Hang Over Picture
     &.overhang {
         margin-bottom: -$nav-height;
+        z-index: 100;
     }
 }
 
@@ -96,13 +105,63 @@ $nav-btn-size: $nav-height - $nav-btn-margin * 2;;
         }
     }
 }
-/*
-@include respond-to('sm', true){
-    .nav {
-         & .menu-btn {
-            display: inline-block;
+
+// Sticky Nav
+.nav {
+    &.sticky {
+        position: fixed;
+        width: 100%;
+        background: $black;
+        z-index: 10;
+        opacity: 0;
+        transition: all 0.6s;
+        transform: translate(0px, -100%);
+        
+        &.active {
+            opacity: 1;
+            transform: translate(0px, 0%);
         }
-        & ul {
+    }
+}
+
+body.menu-open {
+    .nav {
+        &.sticky.active {
+             transform: translate(-400px, 0%);
+        }
+    }
+}
+
+// Brand
+.brand {
+    font-size: 200%;
+    color: $white;
+    margin: 0;
+    padding: 0;
+}
+
+// Menu Button
+.menu-btn, .close-btn {
+    display: inline-block;
+    color: $white;
+    width: $nav-btn-size;
+    height: $nav-btn-size;
+    line-height: $nav-btn-size;
+    font-size: 25px;
+    margin: $nav-btn-margin;
+    text-align: center;
+    @include transition();
+    @include border-radius(5px);
+    
+    &:hover, &:focus {
+        color: $black;
+        background: $white;
+    }
+}
+
+@include respond-to($small, true){
+    .nav {
+        ul {
             position: relative;
             display: block;
             justify-content: flex-start;
@@ -113,13 +172,13 @@ $nav-btn-size: $nav-height - $nav-btn-margin * 2;;
             width: 60%;
             max-width: 480px;
             
-            & > li {
+            > li {
                 display: block;
                 width: 100%;
                 height: 100%;
                 text-align: center;
                 
-                & > a {
+                > a {
                     display: block;
                     width: 100%;
                     height: 100%;
@@ -128,23 +187,132 @@ $nav-btn-size: $nav-height - $nav-btn-margin * 2;;
             }
         }
     }
-}*/
-
-.brand {
-    font-size: 200%;
-    color: $white;
-    margin: 0;
-    padding: 0;
 }
 
-.menu-btn {
-        display: none;
-        width: $nav-btn-size;
-        height: $nav-btn-size;
-        line-height: $nav-btn-size;
-        margin: $nav-btn-margin;
-        text-align: center;
-        background: $nav-color;
-        border: lighten($grey, $light-3) solid 1px;
-        @include border-radius(5px);
+body { 
+    .main-content {
+        @include transition(all 0.6s);
+        //@include transform(translateX(0px));
     }
+    .nav-content {
+        color: $white;
+        background: $black;
+        text-align: center;
+        width: 400px;
+        height: 100%;
+        padding: 0 15px;
+        overflow: auto;
+        z-index: 5;
+        @include position(fixed 0px 0px 0 0);
+        @include transition(all 0.6s);
+        @include transform(translateX(100%));
+        
+        hr.break {
+			margin-bottom: 20px;
+		}
+
+		ul {
+			padding: 0 15px;
+
+			> li {
+				border: solid 4px transparent;
+				@include transition();	
+
+				> a {
+					display: block;
+					height: 35px;
+					line-height: 35px;
+					color: $white;
+					box-sizing: content-box;
+					@include transition();	
+				}
+
+				> ul {
+					padding: 0;
+
+					> li {
+						border-top-width: 0px;
+						border-bottom-width: 0px;
+
+						> a {
+							height: 0;
+							color: transparent;
+							box-sizing: content-box;
+
+							@include transition();	
+
+
+						}
+
+						&:hover a {
+							color: $black;
+							background: $white;
+						}
+					}
+				}
+
+				&:hover {
+					border: solid 4px $white;
+
+					> a {
+						color: $black;
+						background: $white;
+					}
+
+					> ul > li {
+						border-top-width: 4px;
+						border-bottom-width: 4px;
+
+						> a {
+							height: 35px;
+							color: $white;
+
+							&:hover {
+								color: $black;
+							}
+						}
+					}
+				}
+			}
+		}
+    }
+}
+
+// Full Page Nav
+body.menu-open {
+	overflow: hidden;
+
+	.main-content {
+        pointer-events: none;
+        @include transform(translateX(-400px));
+        @include transform(translateX(-400px));
+    }
+   
+	.nav-content {
+		@include transform(translateX(0%));
+	}
+}
+
+body {
+    &:before {
+        content: "";
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background-color: $overlay-color;
+        background-attachment: fixed;
+        z-index: 1000;
+        opacity: 0;
+        pointer-events: none;
+        @include transform(translateX(0px));
+        @include transition(all 0.6s);
+    }
+
+    &.menu-open:before {
+        opacity: 0.25;
+        pointer-events: all;   
+        @include transform(translateX(-400px));
+    }
+}

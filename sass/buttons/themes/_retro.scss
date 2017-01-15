@@ -1,0 +1,53 @@
+// #############################
+//  Retro Theme
+// #############################
+
+$retro-btn: (
+    "background":       $white,
+    "border":           solid 2px $black,
+    "border-radius":    0,
+    "color":            $black,
+    "font-size":        0.75em,
+    "font-weight":      bold,
+    "font-style":       italic,
+    "text-transform":   uppercase,
+    "margin":           inherit,
+    "padding":          10px 25px,
+    "box-shadow":       $black 4px 4px,
+    
+    "on-hover": (
+        "background":   $black,
+        "color":        $white
+    ),
+    "on-focus": (
+        "box-shadow":   $white 4px 4ox,
+        "outline":      none
+    )
+);
+
+%retro-btn {
+    background:     map-get($retro-btn, "background");
+    border:         map-get($retro-btn, "border");
+    border-radius:  map-get($retro-btn, "border-radius");
+    font-size:      map-get($retro-btn, "font-size");
+    font-weight:    map-get($retro-btn, "font-weight");
+    font-style:     map-get($retro-btn, "font-style");
+    text-transform: map-get($retro-btn, "text-transform");
+    text-shadow:    map-get($retro-btn, "text-shadow");
+    color:          map-get($retro-btn, "color");
+    padding:        map-get($retro-btn, "padding");
+    box-shadow:     map-get($retro-btn, "box-shadow");
+
+    &:hover {
+        $on-hover:      map-get($retro-btn, "on-hover");
+        
+        color:          map-get($on-hover, "color");
+        background:     map-get($on-hover, "background");
+    }
+    &:focus,
+    &.focus {
+        $on-focus:      map-get($retro-btn, "on-focus");
+
+        box-shadow:     map-get($on-focus, "box-shadow");
+    }
+}

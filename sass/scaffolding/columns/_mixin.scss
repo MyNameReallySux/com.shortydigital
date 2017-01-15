@@ -1,0 +1,95 @@
+// #############################
+//  Rows
+// #############################
+
+@mixin make-row($margin: $row-margin-top) {
+    @extend %clearfix;
+    margin-left: auto;
+    margin-right: auto;
+    
+    & + & {
+        margin-top: $margin;
+    }
+}
+
+// #############################
+//  Columns
+// #############################
+
+@mixin make-column($padding: $col-padding){
+    position: relative;
+    float: left;
+    width: 100%;
+    padding: $col-padding;
+}
+
+@mixin column-span($span: 1, $columns: 12){
+    $width: 100% / ($columns / $span);
+}
+
+@mixin column-span-for-size($size, $span){
+    @include respond-to($size){
+        @include column-span($span);
+        @content;
+    }
+}
+
+@mixin generate-columns-for-size($size, $columns: 12) {
+    $col-widths:();
+    
+    @for $i from 1 through $columns {
+        @include column-span($i, $columns);
+        $width: get-column-width($i, $columns);
+        @if not index($col-widths, $width) {
+            .col.#{$size}#{$i} {
+                width: $width;
+                margin-left: 0;
+            }
+
+            $col-widths: append($col-widths, $width, comma);
+        }   
+    }
+}
+
+@mixin generate-column-offsets-for-size($size, $columns: 12){
+    $col-widths:();
+    
+    @for $i from 1 through $columns {
+        $offset: 100% / ($columns / $i);
+
+        @if not index($col-widths, $offset) {
+            .col.offset-#{$size}#{$i} {
+                margin-left: $offset;
+            }
+            
+            .col.push-#{$size}#{$i} {
+                left: $offset;
+            }
+            
+            .col.pull-#{$size}#{$i} {
+                right: $offset;
+            }
+
+            $col-widths: append($col-widths, $offset, comma);
+        }   
+    }
+}
+
+@mixin generate-columns($breakpoints, $columns: 12){
+    @for $i from 1 through length($breakpoints-up) {
+        $pair:  nth($breakpoints-up, $i);
+        $size:  nth($pair, 1);
+        $media: nth($pair, 2);  
+        
+        @if ($media == '') {
+            @include generate-columns-for-size($size, $columns);
+            @include generate-column-offsets-for-size($size, $columns);
+        } 
+        @if $media != '' {
+            @include respond-to($size){
+                @include generate-columns-for-size($size, $columns);
+                @include generate-column-offsets-for-size($size, $columns);
+            }   
+        }
+    }
+}

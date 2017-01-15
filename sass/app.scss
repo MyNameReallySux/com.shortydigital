@@ -10,9 +10,75 @@
     -   scss/app.scss
 ############################ */
 
+body {
+    background-color: $lightgrey;
+    @include linear-gradient($white, $lightgrey);
+    background-size: 100vh;
+    background-position: center 100vh;
+}
+
+section > .container > h1 {
+    @include center(inline);
+    @include flex-text(400%, 20%);
+}
+
+section, .container, .square-container, figure {
+    > .overlay {
+        display: block;
+        @include position(absolute 0px 0px);
+        @include size(100% 100%);
+        opacity: 0.75;
+        
+        &.light {
+            background: $white;
+        }
+        
+        &.dark {
+            background: $shadow;
+        }
+    }
+    
+    > .background {
+        display: block;
+        @include size(100% 100%);
+        background-position: center center;
+        background-size: cover;
+        
+        &.greyscale {
+            filter: grayscale(1);
+        }
+    }
+    
+    > .container {
+        display: block;
+        position: relative;
+        z-index: 5;
+    }
+}
+
+section, .container, figure {
+    > .background {
+        @include position(absolute 0px 0px);
+    }
+    
+}
+
+section, .container {
+    > .background {
+        background-attachment: fixed;
+    }
+}
+
+.square-container {
+    > .background {
+        @include center(both);
+    }
+}
+
 /* ############################
     Nav Styles
 ############################ */
+
 .brand {
     font-family: 'Roboto', sans-serif;
     font-size: 150%;
@@ -28,8 +94,190 @@
 /* ############################
     Banner Styles
 ############################ */
+
+.banner:not(.cover) {
+    position: relative;
+    height: 400px;
+    background: $primary;
+}
+
+.banner {
+    > .background {
+        display: block;
+        @include position(absolute 0px 0px);
+        @include size(100% 100%);
+        background-image: url(/images/banners/city.jpg);
+        background-position: center center;
+        background-size: cover;
+    }
+    
+    > .overlay {
+        display: block;
+        @include position(absolute 0px 0px);
+        @include size(100% 100%);
+        opacity: 0.5;
+    }
+    
+    > .banner-content {
+        display: block;
+        @include size(100% auto);
+        @include center(both, inline);
+    }
+}
+
+.banner.main {
+    h1 {
+        white-space: nowrap;
+        @include flex-text(400%, 40%);
+    }
+    
+    h2 {
+        white-space: nowrap;
+        @include flex-text(300%, 30%);
+    }
+}
+
 #city-banner {
     background-image: url(/images/banners/city.jpg);
     background-size: cover;
+    margin-bottom: -90vh;
+}
+
+/* ############################
+    PAGE: /home
+############################ */
+
+#love-to-code {
+    h2, h3, p {
+        @include center(inline);
+    }
+    p {
+        line-height: 175%;
+    }
+}
+
+#code-is-beautiful {
+    height: 50vh;
+    > .background {
+        background-image: url(/images/banners/coding-1.jpeg);
+    }
+}
+
+#experience-table {    
+    > .background {
+        background-image: url(/images/banners/building-1.jpeg);
+    }
+}
+
+.icon-gallery {
+    .gallery-image {
+        position: relative;
+        min-height: 150px;
+        
+        img {
+            $max: 125px;
+            
+            height: auto;
+            max-width: $max;
+            max-height: $max;
+
+            @include center(both);
+            
+            &.wide {
+                max-width: $max * 1.25;
+            }
+        }
+    }
+    
+    .gallery-content {
+        padding-bottom: 10px;
+        
+        ul {
+            line-height: 150%;
+            padding: 10px;
+            li {
+                @include center(inline);
+                padding: 5px;
+                border-left: solid 4px transparent;
+                border-right: solid 4px transparent;
+                @include transition();
+            }
+            
+            li:hover {
+                border-color: $primary;
+                background: $lightgrey;
+            }
+        }
+    }
+}
+
+#home-header {    
+    img {
+        display: block;
+        max-width: 250px;
+        margin: 0 auto;
+    }
+}
+
+/* ############################
+    PAGE: /about/resume
+############################ */
+
+#resume-banner {
+    > .background {
+        background-image: url(/images/banners/building-1.jpeg);
+    }
+}
+
+#weblications-photo {
+    > .square-container > .background {
+        background-image: url(/images/jobs/college-rd.jpg);
+    }
+}
+
+#coppola-group-photo {
+    > .square-container > .background {
+        background-image: url(/images/jobs/kw-west-monmouth.jpg);
+    }
+}
+
+#job-history .job-details {
+    .col {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+    
+    
+    .job-header {}
+    .job-photo {
+        margin-bottom: 10px;
+    }
+    .job-title, .job-date {
+        h6 {
+            margin: 0;
+        }
+    }
+    .job-date { text-align: right; }
+    .job-summary { 
+        p {
+            text-align: justify; 
+        }
+    }
+    .job-responsibilities {}
+    .job-skills {}
+}
+
+@include respond-to($small, true){
+    .job-details {
+        .square-container {
+            padding: 25% 0;
+        }
+    }
+}
+
+#education {
+    > .background {
+        background-image: url(/images/banners/education.jpg)
+    }
 }
 

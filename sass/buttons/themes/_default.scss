@@ -55,5 +55,15 @@ $default-btn: (
 
         box-shadow: map-get($focus, "box-shadow");
         outline: map-get($focus, "outline");
-    }   
+    }  
+    
+     @each $color, $hex in $theme-colors {
+        &.#{$color}:hover {
+            background: $black;
+        }
+
+        & .#{$color}:hover {
+            background: $black;
+        }  
+    }
 }

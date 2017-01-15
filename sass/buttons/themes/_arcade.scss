@@ -10,6 +10,7 @@ $arcade-btn: (
     "border-radius":    $arcade-btn-thickness,
     "box-shadow":       0 $arcade-btn-thickness,
     "color":            darken($grey, $dark-4),
+    "font-weight":      800, 
     "position":         relative,
     "text-transform":   uppercase,
     "top":              0px,
@@ -27,9 +28,9 @@ $arcade-btn: (
 
     color: map-get($arcade-btn, "color");
     background: map-get($arcade-btn, "background");
-
+    font-weight: map-get($arcade-btn, "font-weight");
     text-transform: map-get($arcade-btn, "text-transform");
-
+    
     border: map-get($arcade-btn, "border");
     box-shadow: map-get($arcade-btn, "box-shadow") ;
 

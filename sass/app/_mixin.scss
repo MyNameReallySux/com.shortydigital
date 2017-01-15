@@ -45,6 +45,14 @@
     border-bottom:   solid $border-size transparent;
 }
 
+@mixin horizontal-align($position: relative){
+    position: $position;
+    top: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%); 
+}
+
 @mixin vertical-align($position: relative){
     position: $position;
     top: 50%;
@@ -99,3 +107,97 @@
     -o-transition: $value;
     transition: $value;
 }
+
+@mixin size($size){
+    @if(length($size) == 1){
+        width: $size;    
+    }
+    @if(length($size) == 2){
+        width: nth($size, 1);    
+        height: nth($size, 2);
+    }
+    
+}
+
+@mixin position($position){
+    $position-map: (
+        "absolute",
+        "fixed",
+        "relative",
+        "static",
+    );
+    
+    @if(length($position) > 0){
+        $type: nth($position, 1);
+		
+		@if(not contains($position-map, $type)){
+			@error "#{$type} is not a valid position type.";
+		} @else {
+			$top: 0;
+			$right: 0;
+			$bottom: 0;
+			$left: 0;
+
+			$elements: length($position);
+			@if($elements > 1){
+				@if($elements - 1 == 2) {
+					// top left
+					$top: nth($position, 2);
+					$left: nth($position, 3);
+				} @else if($elements - 1 == 4) {
+					// top right bottom left   
+					$top: nth($position, 2);
+					$right: nth($position, 3);
+					$bottom: nth($position, 4);
+					$left: nth($position, 5);
+				} @else {
+					@error "Position values must be in 'top left' or 'top right bottom left' formats.";
+				}
+			}
+			
+			position: $type;
+			@if(not unitless($top))    { top: $top; }
+			@if(not unitless($right))  { right: $right; }
+			@if(not unitless($bottom)) { bottom: $bottom; }
+			@if(not unitless($left))   { left: $left; }
+		}
+	}    
+}
+
+
+@mixin center($types ...){
+    $center-map: (
+        "block",
+        "inline",
+        "both",
+        "horizontal",
+        "vertical"
+    );
+    
+    $used: ();
+    @each $type in $types {
+        @if(not contains($center-map, $type)){
+            @error "#{$type} is not a valid center type.";
+        } @else if(contains($used, $type)) {
+            @error "#{$type} has already been specified once.";
+        } @else if($type == "both"){
+            @include position(absolute 50% 50%);
+            @include transform(translate(-50%, -50%));
+            $used: append($used, "both");
+        } @else if($type == "horizontal"){
+            @include position(absolute 50% 0);
+            @include transform(translateX(-50%));
+        } @else if($type == "vertical"){
+            @include position(absolute 0 50%);
+            @include transform(translateY(-50%));
+        } @else if($type == "block"){
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        } @else if($type == "inline"){
+            text-align: center;
+        } @else {
+            @error "Your center input '#{$type}' is malformed.";
+        }
+    }
+}    

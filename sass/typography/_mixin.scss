@@ -19,3 +19,24 @@
         content: close-quote;
     }
 }
+
+@mixin flex-text($base, $delta: 1px){
+    font-size: $base; 
+    
+    $breakpoints: length($breakpoints-up);
+    @for $i from 1 through $breakpoints {
+        $index: $breakpoints - ($i - 1);
+        $pair:  nth($breakpoints-up, $index);
+        $size:  nth($pair, 1);
+        $media: nth($pair, 2); 
+        $multiplier: $i - 1;
+        
+        @if($multiplier > 0) {
+            @include respond-to($size, true){
+                $size-delta: $delta * $multiplier;
+                $new-size: $base - $size-delta;
+                font-size: $new-size;
+            }    
+        }
+    }
+}

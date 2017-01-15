@@ -1,0 +1,177 @@
+%caption-box-style {
+    display: inline-block;
+    background: $darkgrey;
+    color: $white; 
+    text-shadow: rgba($black, 0.75) 2px 2px 2px;
+    box-shadow: rgba($black, 0.75) 3px 3px 5px;
+    padding: 15px 25px;
+}
+
+%caption-box-inline {
+    text-transform: uppercase;
+}
+
+%caption-box-heading {
+    font-family: "Raleway", sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+}
+
+%caption-box-div {
+    @include flex-text(150%, 10%);
+    letter-spacing: 0.2em;
+}
+
+%caption-box-span {
+    @include flex-text(150%, 10%);
+    letter-spacing: 0.2em;
+    font-weight: bold;
+    box-shadow: none;
+    background: transparent;
+    text-shadow: rgba($black, 0.75) 1px 1px 1px;
+}
+
+%caption-box-small {
+    @include flex-text(100%, 6%);
+    letter-spacing: 0.15em;
+    padding: 10px 25px;
+}
+
+.caption-boxes {
+    @include center(both, inline);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.caption-boxes {
+    > h1, > h2, > h3, > h4, > h5, > h6 {
+        @extend %caption-box-style;
+        
+        &:not(.display){
+            @extend %caption-box-heading;
+        }
+    }
+    
+    > div, > span, > small {
+        @extend %caption-box-style;
+        @extend %caption-box-inline;
+    }
+    
+    > div {
+        @extend %caption-box-div;
+    }
+    
+    > span {
+        @extend %caption-box-span;
+    }
+    
+    > small {
+        @extend %caption-box-small;
+    }
+}
+
+.caption-box {
+    @extend %caption-box-style;
+    
+    & + .caption-box {
+        margin-top: 15px;
+    }
+    
+    > h1, > h2, > h3, > h4, > h5, > h6 {
+        margin: 0;
+        padding: 0;
+        &:not(.display){
+            @extend %caption-box-heading;
+        }    
+
+    }
+    
+    > h2:not(.display) {
+        @include flex-text(175%, 12.5%);
+    }
+    
+    > h3:not(.display) {
+        @include flex-text(150%, 10%);
+    }
+    
+    > h4:not(.display) {
+        @include flex-text(125%, 7.5%);
+    }
+    
+    > div, > span, > small {
+        @extend %caption-box-inline;
+    }
+    
+    > div {
+        @extend %caption-box-div;
+    }
+    
+    > p {
+        text-shadow: none;
+    }
+    
+    > span {
+        @extend %caption-box-span;
+    }
+    
+    > small {
+        @extend %caption-box-small;
+    }
+    
+    .chips li {
+        background: $lightgrey;
+        color: $black;
+        text-shadow: none;
+    }
+    
+    &.small-flex {
+        @include flex-text(100%, 6%);
+    }
+    &.medium-flex {
+        @include flex-text(125%, 8%);
+    }
+    &.large-flex {
+        @include flex-text(150%, 10%);
+    }
+    &.small-text {
+        font-size: 16px;
+    }
+    &.medium-text {
+        font-size: 20px;
+    }
+    &.large-text {
+        font-size: 24px;
+    }
+}
+
+@each $name, $hex in $theme-colors {
+    .caption-box.#{$name} {
+        background: $hex;
+    }
+    .caption-box.#{$name}-text {
+        color: $hex;
+    }
+    .caption-box.#{$name}-border {
+        border-left: solid 5px $hex;
+    }
+}
+
+@each $name, $hex in $shades {
+    .caption-box.#{$name} {
+        background: $hex;
+    }
+    .caption-box.#{$name}-text {
+        color: $hex;
+    }
+    .caption-box.#{$name}-border {
+        border-left: solid 5px $hex;
+    }
+}
+.caption-box.transparent {
+    box-shadow: none;
+}

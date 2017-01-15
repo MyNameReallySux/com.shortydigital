@@ -30,3 +30,17 @@
         }
     }
 }
+
+@each $name, $hex in $theme-colors {
+    .btn.#{$name} {
+        background: $hex;
+    }    
+}
+
+@each $theme in $btn-themes {
+    @each $name, $hex in $theme-colors {
+        .btn.#{$name}, .#{$theme} .btn.#{$name}  {
+            background: $hex;
+        }    
+    }
+}
